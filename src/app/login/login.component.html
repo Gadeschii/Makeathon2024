@@ -1,0 +1,30 @@
+ <div class = "center">
+    <div class="container"> 
+
+        <div class="left-side" class="center">
+            <form class="example-form">
+                <h1 class="title"> Welcome to Makeathon 2024</h1>
+                <mat-form-field class="example-full-width" >
+                    <mat-label>User</mat-label>
+                    <input matInput [(ngModel)]="email" name="username" required >
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Password</mat-label>
+                    <input matInput [(ngModel)]="password" name="userPassword" type="password" ngModel = required>
+                </mat-form-field>
+
+                <div class="center">
+                    <button class="button" type="submit">Login</button>
+                    <button class="button" type="submit">Forgot password?</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="right-side">
+            <img src="assets/images/Smart-Green-Island-Makeathon.jpg" class="img" alt="Company Logo">
+        </div>
+    </div>
+</div>  
