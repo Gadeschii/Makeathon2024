@@ -1,7 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Merienda:wght@300&family=Playball&display=swap');
+@import url('https://fonts.cdnfonts.com/css/kg-life-is-messy');
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "~bootstrap/dist/css/bootstrap.css";
+
 
 p {
     font-size: 15px;
@@ -63,6 +65,10 @@ header {
     height: 100%;
 }
 
+.title {
+    font-family: 'KG Life is Messy', sans-serif;
+}
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'KG Life is Messy', sans-serif;
+}

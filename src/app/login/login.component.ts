@@ -4,8 +4,6 @@ import { UserService } from '../Service/user.service';
 import { Router } from '@angular/router';
 import { IUser } from '../models/user';
 
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,12 +16,17 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: UserService, private router: Router) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onLogin(form: any): void {
     this.authService.login(form.value).subscribe(res => {
       this.router.navigateByUrl('/auth'); //redirect to auth
       });
     }
+
+
+  // onLogin(form:any):void{
+  //   console.log( 'Login',form.value);
+  // }
+
 }

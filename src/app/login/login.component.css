@@ -35,6 +35,10 @@ body {
     align-items: center;
 }
 
+.title {
+    font-family: 'KG Life is Messy', sans-serif;
+}
+
 .divider {
     border-left: 10px solid black;
     margin: 0 20px;
