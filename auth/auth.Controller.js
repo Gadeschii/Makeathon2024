@@ -11,7 +11,7 @@ exports.createUser = (req, res, next) => {
         password: bcrypt.hashSync(req.body.password)
     });
 
-    // Save the user in the database
+    // Sa ve the user in the database
     newUser.save()        
         .then(user => {
             // If the user is created successfully, create a new JWT token for them
@@ -44,15 +44,32 @@ exports.loginUser = (req, res, next) => {
         name: req.body.name,
         password: req.body.password
     }
+    console.log(userData);
     // Find the user in the database
     User.findOne({ name: userData.name })
         .then(user => {
-            // If the user is not found, send an error response
+            // If the user name is not found, send an error response
             if (!user) {
                 res.status(409).send({ message: 'Something is wrong' });
             } else {
-                // Continue with your logic here
-                res.send({ user });
+                // If found, check if the password is correct
+                const resultPassword = bcrypt.compareSync(userData.password, user.password);
+                // If it's correct, create a new JWT token for the user
+                if (resultPassword) {
+                    const expiresIn = 24 * 60 * 60;
+                    const accessToken = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: expiresIn });
+                    // Prepare the user data to be sent in the response
+                    const dataUser = {
+                        name: user.name,
+                        accessToken: accessToken,
+                        expiresIn: expiresIn
+                    }
+                    // Send the response with the user data
+                    res.send({ dataUser });
+                } else {
+                    // If password is incorrect, send an error response
+                    res.status(409).send({ message: 'Something is wrong' });
+                }
             }
         })
         .catch(err => {
