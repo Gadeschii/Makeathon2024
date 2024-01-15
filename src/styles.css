@@ -52,7 +52,6 @@ header {
   
 .button:active {
     background-color: #8cbc54;
-    /* Cambiar el color del borde a un azul más claro */
     border-color: #b2d18f;
     /* Cambiar la posición del botón para dar un efecto de profundidad */
     transform: translateY(2px);

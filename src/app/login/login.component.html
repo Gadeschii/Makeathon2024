@@ -1,36 +1,44 @@
- <div class = "center">
-    <div class="container"> 
-        <h1 class="title"> Welcome to Makeathon 2024</h1>
 
-        <div class="left-side" class="center">
-            <form #frmLogin="ngForm" class="login-container" (ngSubmit) = "onLogin(frmLogin)">
+<div class="main-container">
 
-                <mat-form-field class="example-full-width" >
+    <div class= "content"> 
+
+        <form #frmRegister="ngForm" class="login-container" (ngSubmit)="onLogin(frmRegister)">
+            
+            
+            <div class="left-side" >
+                <mat-form-field  >
                     <mat-label>User</mat-label>
                     
                     <input matInput [(ngModel)]="email" name="username" required >
-
+    
                 </mat-form-field>
-
-                <mat-form-field class="example-full-width">
+    
+                <mat-form-field >
                     <mat-label>Password</mat-label>
-
+    
                     <input matInput [(ngModel)]="password" name="userPassword" type="password" required>
-
+    
                 </mat-form-field>
-
-                <div class="center">
-                    <button class="button" type = "submit"> Login</button>
-                    <button class="button" type = "submit"> Forgot password?</button>
-
+                
+                <div>
+                    <button class="button" type = "submit"> Register </button>
+            
                 </div>
-            </form>
-        </div>
+            </div> 
+            
+          
+            <div class="right-side">
+                <p class="welcome-text">Welcome to</p>
+                <img src="assets/images/Smart-Green-Island-Makeathon.jpg" class="img" alt="Company Logo">
+                <p class="year-text">2024</p>
+            </div>
 
-        <div class="divider"></div>
-
-        <div class="right-side">
-            <img src="assets/images/Smart-Green-Island-Makeathon.jpg" class="img" alt="Company Logo">
-        </div>
+            
+        </form>
+        
     </div>
-</div>  
+        
+</div> 
+
+
