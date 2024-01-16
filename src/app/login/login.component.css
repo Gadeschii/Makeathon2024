@@ -33,6 +33,7 @@ body {
 .right-side {
     text-align: right; /* Aligns the text to the right */
 }
+
 .login-container {
     display: flex; /* Uses the flexible box model to align the internal elements of the form */
     align-items: center; /* Centers the form vertically within the main container */
@@ -60,6 +61,7 @@ body {
     font-family: 'KG Life is Messy', sans-serif;
     font-size: 4em; /* Makes the title larger */
 }
+
 .year-text {
     text-align: center; /* Centers the text */
     margin-top: 10px; /* Adds a small space between the image and the text */

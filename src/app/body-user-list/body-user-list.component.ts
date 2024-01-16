@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as e from 'express';
 import * as XLSX from 'xlsx';
 
 interface ExcelData {
@@ -51,4 +52,9 @@ export class BodyUserListComponent {
       )
     );
   }
+
+
+}
+export class BodyUserListModule { 
+  
 }

@@ -19,19 +19,11 @@ body {
     margin: 0;
     padding: 0;
 }
-header {
-    font-family: 'Lobster', sans-serif;
-    background-color: #f8f4f1;
-    color: #8cbc54;
-    padding: 10px 0;
-    text-align: center;
-}
 
 .header-content {
     display: flex;
     justify-content: space-between; 
     align-items: center; 
-    margin: 20px; 
 }
 .button {
     background-color: #f9f9f9;
