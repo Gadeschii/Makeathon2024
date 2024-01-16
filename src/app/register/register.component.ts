@@ -10,7 +10,7 @@ import { IUser } from '../models/user';
 })
 
 export class RegisterComponent {
-  username: string = ''; // Initialize email property
+  name: string = ''; // Initialize email property
   password: string = ''; // Initialize password property
   confirmPassword: string = ''; // Initialize confirmPassword property
  
@@ -25,7 +25,7 @@ export class RegisterComponent {
 
     // Create user object from email and password
     const user: IUser = {
-      username: this.username,
+      name: this.name,
       password: this.password
     };
 
@@ -33,8 +33,8 @@ export class RegisterComponent {
     this.userService.register(user).subscribe(
       (res) => {
 
-        // Store username and password in local storage
-        localStorage.setItem('username', user.username);
+        // Store name and password in local storage
+        localStorage.setItem('name', user.name);
         localStorage.setItem('password', user.password);
 
         // Redirect to home page

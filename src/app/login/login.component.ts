@@ -13,7 +13,7 @@ import { IUser } from '../models/user'; // Importing IUser interface
 
 // LoginComponent class with OnInit
 export class LoginComponent implements OnInit {
-  name: string = ''; // Property for email
+  name: string = ''; // Property for name
   password: string  = ''; // Property for password
 
   // Constructor with UserService and Router injected
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   onLogin(form: any): void {
     console.log( form.value ); // Printing the form value on console 
     this.authService.login(form.value).subscribe(res => { // Calling the login method from authService
-      this.router.navigateByUrl('/home'); // Redirect to auth after successful login 
+      this.router.navigateByUrl('/auth/header'); // Redirect to auth after successful login 
       });
     }
 }

@@ -1,6 +1,6 @@
 export interface IUser {
     //id: number,
-    username: string,
+    name: string,
     //email: string, //check if this is needed
     password: string
 }
