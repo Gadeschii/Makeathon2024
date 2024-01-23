@@ -34,6 +34,22 @@ body {
     margin: 5px;
     padding: 10px;
 }
+.button-search {
+    background-color: #f9f9f9;
+    border: 2px solid #8cbc54;
+    border-radius: 10px;
+    color: #8cbc54;
+    font-size: 20px;
+    margin: 5px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+.button-search:hover {
+    background-color: #8cbc54;
+    border-color: #8cbc54;
+    color: white;
+    cursor: pointer;
+}
   
 .button:hover {
     background-color: #8cbc54;

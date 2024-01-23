@@ -57,7 +57,7 @@ body {
 .welcome-text {
     text-align: center; /* Centers the text */
     margin-bottom: 10px; /* Adds a small space between the text and the image */
-    margin-left: 60px; /* Adjusts the right margin to move the text to the right */
+    margin-left: 65px; /* Adjusts the right margin to move the text to the right */
     font-family: 'KG Life is Messy', sans-serif;
     font-size: 4em; /* Makes the title larger */
 }

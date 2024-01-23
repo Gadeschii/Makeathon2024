@@ -2,9 +2,7 @@
 <div class="main-container">
 
     <div class= "content"> 
-
-        <form #frmRegister="ngForm" class="login-container" (ngSubmit)="onLogin(frmRegister)">
-            
+        <form #frmLogin="ngForm" class="login-container" (ngSubmit)="onLogin(frmLogin)">
             
             <div class="left-side" >
                 <mat-form-field  >
@@ -22,18 +20,16 @@
                 </mat-form-field>
                 
                 <div>
-                    <button class="button" type = "submit"> Register </button>
+                    <button class="button" type = "submit"> Login </button>
             
                 </div>
             </div> 
-          
             <div class="right-side">
                 <p class="welcome-text">Welcome to</p>
                 <img src="assets/images/Smart-Green-Island-Makeathon.jpg" class="img" alt="Company Logo">
                 <p class="year-text">2024</p>
             </div>
-
-            
+      
         </form>
         
     </div>

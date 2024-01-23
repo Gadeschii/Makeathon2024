@@ -5,6 +5,89 @@ body {
     padding: 0;
 }
 
+/* search*/
+.container-3{
+    width: 300px;
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+ 
+  }
+  .container-3 input#search{
+    width: 300px;
+    height: 50px;
+    background: #d4cec9;
+    border: none;
+    font-size: 15pt;
+    float: left;
+    color: #5d7e37;
+    padding-left: 45px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color: #5d7e37;/*color letter*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70vw;
+
+  }
+  .container-3 input#search::-webkit-input-placeholder {
+    color: #65737e;
+    
+
+ }
+ .container-3 input#search:-moz-placeholder { /* Firefox 18- */
+    color: #65737e;  
+ }
+ .container-3 input#search::-moz-placeholder {  /* Firefox 19+ */
+    color: #65737e;  
+ }
+ .container-3 input#search:-ms-input-placeholder {  
+    color: #65737e;  
+ }
+ .container-3 .icon{
+    position: absolute;
+    margin-left: -1270px;
+    margin-top: -10px;
+    z-index: 1;
+    color: #5d7e37;
+     -webkit-transition: all .55s ease;
+    -moz-transition: all .55s ease;
+    -ms-transition: all .55s ease;
+    -o-transition: all .55s ease;
+    transition: all .55s ease;
+  }
+  .container-3 input#search:focus, .container-3 input#search:active{
+    outline:none; 
+}
+.container-3:hover .icon{
+  margin-top: -10px;
+  color: #5d7e37;
+  -webkit-transform:scale(1.5); /* Safari and Chrome */
+  -moz-transform:scale(1.5); /* Firefox */
+  -ms-transform:scale(1.5); /* IE 9 */
+  -o-transform:scale(1.5); /* Opera */
+   transform:scale(1.5);
+  }
+  /* Search end */
+  .table-container-titule {
+    font-family: 'KG Life is Messy', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .table-container-titule table {
+    text-align: justify;
+    width: 80%; /* Adjust this value to change the width of the table */
+  }
+
 .container {
     max-width: 600px;
     margin: 50px auto;

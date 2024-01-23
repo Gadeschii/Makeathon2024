@@ -25,9 +25,16 @@ export class LoginComponent implements OnInit {
 
   // Method to handle login
   onLogin(form: any): void {
-    console.log( form.value ); // Printing the form value on console 
-    this.authService.login(form.value).subscribe(res => { // Calling the login method from authService
-      this.router.navigateByUrl('/auth/header'); // Redirect to auth after successful login 
-      });
-    }
+    console.log(form.value); // Printing the form value on console 
+    // Calling the login method of authService and passing the user object to it
+    this.authService.login(form.value).subscribe({
+      next: res => {
+        this.router.navigateByUrl('/auth/dashboard');
+      },
+      error: err => {
+        console.log(err);
+        // Here you can add more code to handle the error, like showing a message to the user
+      }
+    });
+  }
 }

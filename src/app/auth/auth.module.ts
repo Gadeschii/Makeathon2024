@@ -6,10 +6,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserService } from '../Service/user.service'; 
 import { AuthRoutingModule } from './auth.routing.module';
 
+
 @NgModule({
     declarations: [
         // LoginComponent,
         // RegisterComponent
+     
     ],
     imports: [
         CommonModule,

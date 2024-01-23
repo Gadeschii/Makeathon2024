@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { BodyUserListComponent } from './body-user-list/body-user-list.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login/login.component';
@@ -18,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 
+
 import { RouterModule, Routes } from "@angular/router";
 import { routing } from './app.routing';
 
@@ -26,8 +28,10 @@ import { routing } from './app.routing';
     AppComponent,
     HeaderComponent,
     BodyUserListComponent,
+    DashboardComponent,
     LoginComponent,
     RegisterComponent
+    
     
   ],
   imports: [

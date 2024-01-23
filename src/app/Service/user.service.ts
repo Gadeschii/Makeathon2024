@@ -6,13 +6,15 @@ import { IJwtResponse } from '../models/jwt.response';
 import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 
+
+const apiUrl = 'http://localhost:3000';
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserService {
-
-  AUTH_SERVER: string = 'http://localhost:3000';
+  AUTH_SERVER: string = apiUrl;
   authSubject = new BehaviorSubject(false);
   
   private token!: string ; 
@@ -32,6 +34,8 @@ export class UserService {
         }
       ));
   }
+
+
   login(user: IUser): Observable<IJwtResponse> {
     return this.httpClient.post<IJwtResponse>(`${this.AUTH_SERVER}/login`,
       user).pipe(tap(
@@ -43,6 +47,7 @@ export class UserService {
         }
       ));
   }
+
   logout(): void{
     this.token = '';
     localStorage.removeItem("ACCESS_TOKEN");
@@ -60,6 +65,18 @@ export class UserService {
       this.token = localStorage.getItem("ACCESS_TOKEN") || '';
     }
     return this.token;
+  }
+
+
+  // getUser(): Observable<IUser> {
+  //   return this.httpClient.get<IUser>(`${this.AUTH_SERVER}/users`);
+  // }
+  getAllUsers(): Observable<IUser[]> {
+    return this.httpClient.get<IUser[]>(`${this.AUTH_SERVER}/users`);
+  }
+
+  getAllStaff(): Observable<IUser[]> {
+    return this.httpClient.get<IUser[]>(`${this.AUTH_SERVER}/staff`);
   }
 
 
