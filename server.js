@@ -29,6 +29,7 @@ app.use(cors());
 
 // Use the router for routes starting with '/api'
 app.use('/api', router);  
+
 // Import routes from auth.Routers
 authRoutes(router);
 
