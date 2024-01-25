@@ -16,45 +16,55 @@
 <div class="box">
     <div class="container-3">
         <span class="icon"><i class="fa fa-search"></i></span>
-        <input type="search" id="search" [(ngModel)]="searchTerm" placeholder="Search..." />
-        <button class="button-search" (click)="searchUsers()">Search</button> 
+        <input type="search" id="search" [formControl]="searchControl" placeholder="Search...">
+        <!-- <button class="button-search" (click)="searchUsers()">Search</button>  -->
     </div>
 </div>
 
-<div class="table-container-titule"> 
-  <table>
-    <thead>
-      <tr>
-        <!-- this is the titule of the each character of the participant -->
-        <th>Salutation</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Age</th>
-        <th>E-Mail</th>
-        <th>Country</th>
-        <th>Mobile Number</th>
-        <th>Category</th>
-        <th>Status</th>
-        <th>T-Shirt Size</th>
-        <th>CheckIn</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let participant of participants">
-        <td>{{participant.Salutation}}</td>
-        <td>{{ participant['First Name'] }}</td>
-        <td>{{ participant['Last Name'] }}</td>
-        <td>{{participant.Age}}</td>
-        <td>{{ participant['E-Mail'] }}</td>    
-        <td>{{participant.Country}}</td>
-        <td>{{ participant['Mobile Number'] }}</td>
-        <td>{{participant.Category}}</td>
-        <td>{{participant.Status}}</td>
-        <td>{{ participant['T-Shirt Size'] }}</td>
-        <td>{{participant.CheckIn}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<ul>
+  <li *ngFor="let participant of filteredParticipants">{{ participant['First Name'] }} {{ participant['Last Name'] }} {{ participant['Mobile Number'] }} </li>
+</ul>
+
+  <div class="table-container-titule"> 
+    <table>
+      <thead>
+        <tr>
+          <!-- this is the titule of the each character of the participant -->
+          <th>Salutation</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Age</th>
+          <th>E-Mail</th>
+          <th>Country</th>
+          <th>Mobile Number</th>
+          <th>Category</th>
+          <th>Status</th>
+          <th>T-Shirt Size</th>
+          <th>CheckIn</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let participant of participants ">
+          <td>{{participant.Salutation}}</td>
+          <td>{{ participant['First Name'] }}</td>
+          <td>{{ participant['Last Name'] }}</td>
+          <td>{{participant.Age}}</td>
+          <td>{{ participant['E-Mail'] }}</td>    
+          <td>{{participant.Country}}</td>
+          <td>{{ participant['Mobile Number'] }}</td>
+          <td>{{participant.Category}}</td>
+          <td>{{participant.Status}}</td>
+          <td>{{ participant['T-Shirt Size'] }}</td>
+          <td>
+            <button class="button-CheckIn" [class.checked-in]="participant.CheckIn == 1" [class.not-checked-in]="participant.CheckIn == 0">
+              {{ participant.CheckIn == 1 ? 'Checked In' : 'Not Checked In' }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
 
 

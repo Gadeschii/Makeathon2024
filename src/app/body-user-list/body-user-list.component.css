@@ -134,3 +134,23 @@ li {
 li:last-child {
     border-bottom: none;
 }
+
+
+.button-CheckIn {
+  border: 2px solid red;
+  border-radius: 10px;
+  font-size: 20px;
+  margin: 5px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.button-CheckIn.checked-in {
+  background-color: #8cbc54;
+  color: white;
+}
+
+.button-CheckIn.not-checked-in {
+  background-color: red;
+  color: white;
+}

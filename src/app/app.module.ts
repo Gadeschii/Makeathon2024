@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 import { RouterModule, Routes } from "@angular/router";
@@ -31,7 +32,6 @@ import { routing } from './app.routing';
     DashboardComponent,
     LoginComponent,
     RegisterComponent
-    
     
   ],
   imports: [
@@ -49,8 +49,8 @@ import { routing } from './app.routing';
     FormsModule,
     AuthRoutingModule,
     HttpClientModule,
-    RouterModule
-    
+    RouterModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
