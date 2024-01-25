@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../Service/user.service';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 
 const apiUrl = 'http://localhost:3000';
@@ -31,17 +30,6 @@ interface Participant {
 
 // Define the component
 export class BodyUserListComponent implements OnInit{
-  // Declare variables for user data
-  searchControl = new FormControl();
-
-  name: string = "";
-  userId: string = "";
-  userName: string = "";
-  userPassword: string = "";
-  userIdToUpdate: string = "";
-  userNameToUpdate: string = "";
-  userPasswordToUpdate: string = "";
-  userIdToDelete: string = "";
 
   // Declare variables for search functionality
   searchTerm: string = '';
@@ -49,18 +37,29 @@ export class BodyUserListComponent implements OnInit{
   users: any[] = []; // Array to store the users
   participants: any[] = []; // Array to store the users
   filteredUsers: any[] = []; // Array to store the filtered users
+  searchControl = new FormControl();
+
+  
 
   // Inject HttpClient into the component through the constructor
   constructor(private http: HttpClient,  private userService: UserService) { }
 
   // ngOnInit is a lifecycle hook that is called after Angular has initialized all data-bound properties of a directive.
   ngOnInit() {
+    // this.getAllParticipants(); // Call the method when the component is initialized
+    // this.searchControl.valueChanges.subscribe(searchTerm => {
+    //   this.filteredParticipants = this.participants.filter(participant =>
+    //     participant['First Name'].toLowerCase().includes(searchTerm.toLowerCase()) 
+    //   );
+    // });
     this.getAllParticipants(); // Call the method when the component is initialized
-    this.searchControl.valueChanges.subscribe(searchTerm => {
-      this.filteredParticipants = this.participants.filter(participant =>
-        participant['First Name'].toLowerCase().includes(searchTerm.toLowerCase()) 
-      );
-    });
+
+    this.searchControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filterParticipants(value))
+      )
+      .subscribe(value => this.filteredParticipants = value);
   }
 
   // Method to get all participants
@@ -79,26 +78,23 @@ export class BodyUserListComponent implements OnInit{
         'T-Shirt Size': participant['T-Shirt Size'],
         CheckIn: participant.CheckIn
       }));
-    
+      this.filteredParticipants = this.participants;
     });
   }
 
+  private _filterParticipants(value: string): Participant[] {
+    const filterValue = value.toLowerCase();
 
-  // Method to search users
-  searchUsers() {
-    // Convert the search term to lower case
-    const searchTerm = this.searchTerm.toLowerCase();
-    // Filter the users array to include only users whose name, email or mobile number includes the search term
-    this.filteredUsers = this.users.filter(user =>
-      user['Last Name'].toLowerCase().includes(searchTerm) ||
-      user['First Name'].toLowerCase().includes(searchTerm) ||
-      user['E-Mail'].toLowerCase().includes(searchTerm) ||
-      user['Mobile Number'].toLowerCase().includes(searchTerm)
+    return this.participants.filter(participant =>
+      participant['First Name'].toLowerCase().includes(filterValue) 
     );
+  }
 
-   }
-  
- 
+  toggleCheckIn(participant: Participant) {
+    participant.CheckIn = !participant.CheckIn;
+  }
+
+
   // Method to create a new user
   createUser(name: string, password: string) {
     // Make a POST request to the API with the user data and subscribe to the response

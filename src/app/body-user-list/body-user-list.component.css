@@ -135,9 +135,10 @@ li:last-child {
     border-bottom: none;
 }
 
-
 .button-CheckIn {
   border: 2px solid red;
+  background-color: red;
+  color: white;
   border-radius: 10px;
   font-size: 20px;
   margin: 5px;
@@ -147,10 +148,12 @@ li:last-child {
 
 .button-CheckIn.checked-in {
   background-color: #8cbc54;
+  border: 2px solid #8cbc54;
   color: white;
 }
 
 .button-CheckIn.not-checked-in {
   background-color: red;
   color: white;
+
 }

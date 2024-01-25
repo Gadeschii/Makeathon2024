@@ -17,14 +17,8 @@
     <div class="container-3">
         <span class="icon"><i class="fa fa-search"></i></span>
         <input type="search" id="search" [formControl]="searchControl" placeholder="Search...">
-        <!-- <button class="button-search" (click)="searchUsers()">Search</button>  -->
     </div>
 </div>
-
-<ul>
-  <li *ngFor="let participant of filteredParticipants">{{ participant['First Name'] }} {{ participant['Last Name'] }} {{ participant['Mobile Number'] }} </li>
-</ul>
-
   <div class="table-container-titule"> 
     <table>
       <thead>
@@ -44,7 +38,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let participant of participants ">
+        <tr *ngFor="let participant of filteredParticipants ">
           <td>{{participant.Salutation}}</td>
           <td>{{ participant['First Name'] }}</td>
           <td>{{ participant['Last Name'] }}</td>
@@ -56,8 +50,11 @@
           <td>{{participant.Status}}</td>
           <td>{{ participant['T-Shirt Size'] }}</td>
           <td>
-            <button class="button-CheckIn" [class.checked-in]="participant.CheckIn == 1" [class.not-checked-in]="participant.CheckIn == 0">
-              {{ participant.CheckIn == 1 ? 'Checked In' : 'Not Checked In' }}
+            <button class="button-CheckIn" 
+              [class.checked-in]="participant.CheckIn === true" 
+              [class.not-checked-in]="participant.CheckIn === false"
+              (click)="toggleCheckIn(participant)">
+              {{ participant.CheckIn ? 'Checked In' : 'Not Checked In' }}
             </button>
           </td>
         </tr>
