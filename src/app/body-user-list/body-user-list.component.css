@@ -95,6 +95,27 @@ body {
     text-align: center;
   }
 
+  table {
+    display: block;
+    overflow-y: auto; 
+  }
+
+  thead {
+    font-size: 1.3em; 
+    border-bottom: 3px solid #000; 
+    
+  }
+
+  
+  td {
+    border-right: 1px solid #000; 
+    border-bottom: 1.5px solid #000; 
+  }
+  
+  td:last-child {
+    border-right: none; 
+  }
+  
 .container {
     max-width: 600px;
     margin: 50px auto;
