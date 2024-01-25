@@ -7,14 +7,13 @@ import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 
-const apiUrl = 'http://localhost:3000';
-
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserService {
-  AUTH_SERVER: string = apiUrl;
+  readonly apiUrl = 'http://localhost:3000';
+  AUTH_SERVER: string = this.apiUrl;
   authSubject = new BehaviorSubject(false);
   
   private token!: string ; 
@@ -75,9 +74,11 @@ export class UserService {
     return this.httpClient.get<IUser[]>(`${this.AUTH_SERVER}/users`);
   }
 
-  getAllStaff(): Observable<IUser[]> {
-    return this.httpClient.get<IUser[]>(`${this.AUTH_SERVER}/staff`);
+  // getAllParticipants(): Observable<IUser[]> {
+  //   return this.httpClient.get<IUser[]>(`${this.AUTH_SERVER}/participants`);
+  // }
+  getAllParticipants(): Observable<any[]> {
+    return this.httpClient.get<any[]>(`${this.apiUrl}/participants`);
   }
-
 
 }

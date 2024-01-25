@@ -75,17 +75,24 @@ body {
    transform:scale(1.5);
   }
   /* Search end */
+
   .table-container-titule {
     font-family: 'KG Life is Messy', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    border-spacing: 10px;
   }
   
   .table-container-titule table {
     text-align: justify;
     width: 80%; /* Adjust this value to change the width of the table */
+  }
+
+  .table-container-titule td, .table-container-titule th {
+    padding: 10px;
+    text-align: center;
   }
 
 .container {

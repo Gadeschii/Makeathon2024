@@ -5,6 +5,7 @@ import { UserService } from '../Service/user.service';
 
 const apiUrl = 'http://localhost:3000';
 
+
 @Component({
   selector: 'app-body-user-list',
   templateUrl: './body-user-list.component.html',
@@ -27,14 +28,36 @@ export class BodyUserListComponent implements OnInit{
   searchTerm: string = '';
   filteredUsers: any[] = [];
   users: any[] = []; // Array to store the users
+  participants: any[] = []; // Array to store the users
 
   // Inject HttpClient into the component through the constructor
   constructor(private http: HttpClient,  private userService: UserService) { }
 
   // ngOnInit is a lifecycle hook that is called after Angular has initialized all data-bound properties of a directive.
   ngOnInit() {
-    this.getAllStaff(); // Call the method when the component is initialized
+    this.getAllParticipants(); // Call the method when the component is initialized
   }
+
+ // Method to get all participants
+getAllParticipants() { 
+  this.userService.getAllParticipants().subscribe(data => {
+    this.participants = data.map(participant => ({
+      Salutation: participant.Salutation,
+      'First Name': participant['First Name'],
+      'Last Name': participant['Last Name'],
+      Age: participant.Age,
+      'E-Mail': participant['E-Mail'],
+      Country: participant.Country,
+      Category: participant.Category,
+      Status: participant.Status,
+      'Mobile Number': participant['Mobile Number'],
+      'T-Shirt Size': participant['T-Shirt Size'],
+      CheckIn: participant.CheckIn
+    }));
+    console.log(this.participants);
+    
+  });
+}
 
   // Method to search users
   searchUsers() {
@@ -48,36 +71,8 @@ export class BodyUserListComponent implements OnInit{
     );
 
   }
-  getAllStaff() {
-    // Call the getAllStaff method from the UserService and subscribe to the response
-    this.userService.getAllStaff().subscribe(data => {
-      // Log the data returned by the API to the console
-      console.log(data);
-      // Assign the data to your users array
-      this.users = data;
-    });
-  }
-
-
-
-  // Method to get all users
-  // getAllUsers() {
-  //   // Make a GET request to the API and subscribe to the response
-  // this.http.get('http://localhost:3000/users').subscribe(data => {
-  //     // Log the data returned by the API to the console
-  //     console.log(data);
-  //   });
-  // }
-
-  // // Method to get a specific user by ID
-  // getUser(id: string) {
-  //   // Make a GET request to the API with the user ID and subscribe to the response
-  //   this.http.get(`http://localhost:3000/users${id}`).subscribe(data => {
-  //     // Log the data returned by the API to the console
-  //     console.log(data);
-  //   });
-  // }
-
+  
+ 
   // Method to create a new user
   createUser(name: string, password: string) {
     // Make a POST request to the API with the user data and subscribe to the response

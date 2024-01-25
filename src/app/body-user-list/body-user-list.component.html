@@ -26,35 +26,32 @@
     <thead>
       <tr>
         <!-- this is the titule of the each character of the participant -->
-        <th>Category</th>
-        <th>Country</th>
         <th>Salutation</th>
         <th>First Name</th>
         <th>Last Name</th>
-        <th>E-Mail</th>
-        <th>T-Shirt Size</th>
-        <th>Mobile Number</th>
-        <th>Status</th>
-        <th>Institute</th>
-        <th>Field Of Studies</th>
         <th>Age</th>
+        <th>E-Mail</th>
+        <th>Country</th>
+        <th>Mobile Number</th>
+        <th>Category</th>
+        <th>Status</th>
+        <th>T-Shirt Size</th>
+        <th>CheckIn</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of filteredUsers">
-        <td>{{user.category}}</td>
-        <td>{{user.country}}</td>
-        <td>{{user.salutation}}</td>
-        <td>{{user.firstName}}</td>
-        <td>{{user.lastName}}</td>
-        <td>{{user.email}}</td>
-        <td>{{user.tShirtSize}}</td>
-        <td>{{user.mobileNumber}}</td>
-        <td>{{user.status}}</td>
-        <td>{{user.institute}}</td>
-        <td>{{user.fieldOfStudies}}</td>
-        <td>{{user.age}}</td>
-        <!-- Add more data cells as needed -->
+      <tr *ngFor="let participant of participants">
+        <td>{{participant.Salutation}}</td>
+        <td>{{ participant['First Name'] }}</td>
+        <td>{{ participant['Last Name'] }}</td>
+        <td>{{participant.Age}}</td>
+        <td>{{ participant['E-Mail'] }}</td>    
+        <td>{{participant.Country}}</td>
+        <td>{{ participant['Mobile Number'] }}</td>
+        <td>{{participant.Category}}</td>
+        <td>{{participant.Status}}</td>
+        <td>{{ participant['T-Shirt Size'] }}</td>
+        <td>{{participant.CheckIn}}</td>
       </tr>
     </tbody>
   </table>
