@@ -13,36 +13,47 @@ const app = require('express')();
 exports.registerUser = (req, res, next) => {
     console.log(req.body);//Testing
 
-    // Create a new user object with the request data
-    const newUser = new ITQCredentials( {
-        name: req.body.name,
-        password: bcrypt.hashSync(req.body.password)
-    });
-
-    console.log(newUser);//Testing
-
-    // Save the user in the database
-    newUser.save()        
+    // Check if user already exists
+    ITQCredentials.findOne({ name: req.body.name })
         .then(user => {
-            // If the user is created successfully, create a new JWT token for them
-            const expiresIn = 24 * 60 * 60;
-            const accessToken = jwt.sign({ id: user.id },
-                SECRET_KEY, {
-                    expiresIn: expiresIn
+            if (user) {
+                // If the user exists, send an error response
+                return res.status(409).send('Name already exists');
+            } else {
+                // If the user does not exist, create a new user
+                const newUser = new ITQCredentials({
+                    name: req.body.name,
+                    password: bcrypt.hashSync(req.body.password)
                 });
-            // Prepare the user data to be sent in the response
-            const dataUser = {
-                name: user.name,
-                accessToken: accessToken,
-                expiresIn: expiresIn
+
+                console.log(newUser);//Testing
+
+                // Save the user in the database
+                newUser.save()        
+                    .then(user => {
+                        // If the user is created successfully, create a new JWT token for them
+                        const expiresIn = 24 * 60 * 60;
+                        const accessToken = jwt.sign({ id: user.id },
+                            SECRET_KEY, {
+                                expiresIn: expiresIn
+                            });
+                        // Prepare the user data to be sent in the response
+                        const dataUser = {
+                            name: user.name,
+                            accessToken: accessToken,
+                            expiresIn: expiresIn
+                        }
+                        // Send the response with the user data
+                        res.send({ dataUser });
+                    })
+                    .catch(err => {
+                        // For any other errors, send a server error response
+                        return res.status(500).send('Server error');
+                    });
             }
-            // Send the response with the user data
-            res.send({ dataUser });
         })
         .catch(err => {
-            // If there is an error, check if it's a duplicate key error (user already exists)
-            if (err && err.code === 11000) return res.status(409).send('Name already exists');
-            // For any other errors, send a server error response
+            // If there is an error checking for the user, send a server error response
             return res.status(500).send('Server error');
         });
 }
@@ -98,13 +109,15 @@ exports.getAllMembers = (req, res, next) => {
 }
 
 exports.getAllStaff = (req, res, next) => {
-    ITQStaff.find({})
-        .then(staff => {
-            res.status(200).send(staff);
-        })
-        .catch(err => {
-            res.status(500).send(err);
-        });
+    ITQStaff.find({'Category': 'YT'})
+    .then(members => {
+        console.log(members); 
+        res.json(members);
+    })
+    .catch(err => {
+        console.error(err); 
+        res.status(500).json({ error: err });
+    });
 }
 
 // Function to get all users

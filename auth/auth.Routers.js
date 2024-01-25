@@ -12,7 +12,7 @@ module.exports = (router) => {
     // Add more routes as needed
     router.get('/users', UsersController.getAllUsers);
     router.get('/users/:id', UsersController.getUser);
-    router.post('/users/create', UsersController.registerUser);
+  //  router.post('/users/create', UsersController.registerUser);
     router.put('/users/:id', UsersController.updateUser);
     router.delete('/users/:id', UsersController.deleteUser);
     router.get('/users/:term', UsersController.searchUsers);

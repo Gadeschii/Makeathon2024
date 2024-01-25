@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 const dbURL = require('./properties').DB;
+//const { ITQCredentials } = require('./auth.Model');
 
 module.exports = () => {
     // Connect to the MongoDB database using Mongoose
     mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
+      //  ITQCredentials.find()
         .then(() => console.log(`Mongo connected on ${dbURL}`)) // Log a successful connection
         .catch(err => console.log(`Connection has error ${err}`)) // Log an error if the connection fails
 
