@@ -35,76 +35,66 @@ const ITQCredentials = mongoose.model('ITQCredentials', ITQCredentialSchema, 'IT
 
 
 
-// Defining the schema for the ITQStaff collection
-const ITQStaffSchema =  new mongoose.Schema({
+// Defining the schema for the ITQParticipants collection
+const ITQParticipantsSchema =  new mongoose.Schema({
+    
     CheckIn: {
         type: Number,
         required: true
     },
     Category: {
         type: String,
-        required: true
+        required: false
     },
     Country: {
         type: String,
-        required: true
+        required: false
     },
     Salutation: {
         type: String,
-        required: true
+        required: false
     },
     First_Name: {
         type: String,
-        required: true
+        required: false
     },
     Last_Name: {
         type: String,
-        required: true
+        required: false
     },
     E_Mail: {
         type: String,
-        required: true
+        required: false
     },
     T_Shirt_Size: {
         type: String,
-        required: true
+        required: false
     },
     Mobile_Number: {
         type: Number,
-        required: true
+        required: false
     },
     Status: {
         type: String,
-        required: true
+        required: false
     },
     Field_of_Studies: {
         type: String,
-        required: true
+        required: false
     },
     Semester: {
         type: String,
-        required: true
+        required: false
     },
     Age: {
         type: String,
-        required: true
+        required: false
     }
 });
 
-// Creating the ITQStaff model from the schema
-const ITQStaff = mongoose.model('ITQStaff', ITQStaffSchema, 'ITQStaff');
+// Creating the ITQParticipants model from the schema
+const ITQParticipants = mongoose.model('ITQParticipants', ITQParticipantsSchema, 'ITQParticipants');
 
 
-// The following code is for testing purposes. It fetches all documents in the ITQCredentials collection.
-// It is currently commented out, so it won't be executed.
-// ITQCredentials.find()
-//  .then(members => console.log(members))
-//  .catch(err => console.error(err));
-
-// ITQStaff.find()
-//  .then(members => console.log(members))
-//  .catch(err => console.error(err));
-
-
-// Exporting the ITQCredentials and ITQStaff models
-module.exports = { ITQCredentials, ITQStaff };
+// Exporting the ITQCredentials and ITQParticipants models
+module.exports = { ITQCredentials, ITQParticipants };

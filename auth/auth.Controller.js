@@ -1,6 +1,6 @@
 //const User = require('./auth.Dao'); 
 const { ITQCredentials } = require('./auth.Model');
-const { ITQStaff } = require('./auth.Model');
+const { ITQParticipants } = require('./auth.Model');
 
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
@@ -98,18 +98,8 @@ exports.loginUser = (req, res, next) => {
 }
 
 
-exports.getAllMembers = (req, res, next) => {
-    ITQCredentials.find({}, (err, members) => {
-        if (err) {
-            res.status(500).send(err);
-        } else {
-            res.status(200).send(members);
-        }
-    });
-}
-
-exports.getAllStaff = (req, res, next) => {
-    ITQStaff.find({'Category': 'YT'})
+exports.getAllParticipants = (req, res, next) => {
+    ITQParticipants.find()
     .then(members => {
         console.log(members); 
         res.json(members);
@@ -120,10 +110,50 @@ exports.getAllStaff = (req, res, next) => {
     });
 }
 
+// Function to update the check-in status of a participant
+exports.updateCheckIn = (req, res, next) => {
+    // Get the participant id from the request
+    const id = req.params.id;
+    const newCheckInStatus = req.body.CheckIn;
+
+
+    // Find the participant in the database and update their check-in status
+    ITQParticipants.findById(id) 
+        .then(participant => {
+            console.log(id); //Testing
+            if (!participant) {
+                // If the participant was not found, send an error response
+                return res.status(404).send('Participant not found');
+            } else {
+                // Set the check-in status of the participant to the new status
+                participant.CheckIn = newCheckInStatus;
+                // Save the updated participant
+                participant.save()
+                    .then(() => {
+                    // Send the updated participant
+                    res.send(participant.CheckIn.toString());
+                    console.log(participant.CheckIn); //Testing
+                })
+
+                    .catch(err => {
+                        // Log the error for debugging
+                        console.error(err);
+                        // If there was an error saving the participant, send a server error response
+                        return res.status(500).send('Server error1');
+                    });
+            }
+        })
+        .catch(err => {
+            // If there was an error finding the participant, send a server error response
+            return res.status(500).send('Server error2');
+        });
+}
+
+
 // Function to get all users
 exports.getAllUsers = (req, res, next) => {
     // Implement logic to get all users here
-    ITQStaff.find({}, (err, users) => {
+    ITQParticipants.find({}, (err, users) => {
         if (err) res.status(500).send(err);
         res.status(200).send(users);
       });
@@ -147,7 +177,7 @@ exports.searchUsers = (req, res, next) => {
 
 // Function to get a user by ID
 exports.getUser = (req, res, next) => {
-    ITQStaff.findById(req.params.id, (err, user) => {
+    ITQParticipants.findById(req.params.id, (err, user) => {
         if (err) return res.status(500).send(err);
         if (!user) return res.status(404).send('User not found');
         res.status(200).send(user);
@@ -156,7 +186,7 @@ exports.getUser = (req, res, next) => {
 }
 // Function to get a user by name
 exports.getUserByName = (req, res, next) => {
-    ITQStaff.findOne({ name: req.params.name }, (err, user) => {
+    ITQParticipants.findOne({ name: req.params.name }, (err, user) => {
         if (err) return res.status(500).send(err);
         if (!user) return res.status(404).send('User not found');
         res.status(200).send(user);
@@ -165,7 +195,7 @@ exports.getUserByName = (req, res, next) => {
 
 // Function to get a user by email
 exports.getUserByEmail = (req, res, next) => {
-    ITQStaff.findOne({ email: req.params.email }, (err, user) => {
+    ITQParticipants.findOne({ email: req.params.email }, (err, user) => {
         if (err) return res.status(500).send(err);
         if (!user) return res.status(404).send('User not found');
         res.status(200).send(user);
@@ -174,7 +204,7 @@ exports.getUserByEmail = (req, res, next) => {
 
 // Function to update a user
 exports.updateUser = (req, res, next) => {
-    ITQStaff.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, user) => {
+    ITQParticipants.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, user) => {
         if (err) return res.status(500).send(err);
         if (!user) return res.status(404).send('User not found');
         res.status(200).send(user);
@@ -183,7 +213,7 @@ exports.updateUser = (req, res, next) => {
 
 // Function to delete a user
 exports.deleteUser = (req, res, next) => {
-    ITQStaff.findByIdAndRemove(req.params.id, (err, user) => {
+    ITQParticipants.findByIdAndRemove(req.params.id, (err, user) => {
         if (err) return res.status(500).send(err);
         if (!user) return res.status(404).send('User not found');
         res.status(200).send('User deleted');

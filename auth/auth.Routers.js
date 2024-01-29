@@ -12,12 +12,16 @@ module.exports = (router) => {
     // Add more routes as needed
     router.get('/users', UsersController.getAllUsers);
     router.get('/users/:id', UsersController.getUser);
+    
   //  router.post('/users/create', UsersController.registerUser);
     router.put('/users/:id', UsersController.updateUser);
     router.delete('/users/:id', UsersController.deleteUser);
     router.get('/users/:term', UsersController.searchUsers);
 
     //Route for collection from database
-    router.get('/members', UsersController.getAllMembers);
-    router.get('/staff', UsersController.getAllStaff);
+    //router.get('/members', UsersController.getAllMembers);
+    router.get('/participants', UsersController.getAllParticipants);
+
+    //Route for collection from database
+    router.put('/participants/checkin/:id', UsersController.updateCheckIn);
 }
