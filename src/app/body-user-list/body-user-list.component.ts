@@ -1,13 +1,14 @@
-// Import styles
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../Service/user.service';
 import { FormControl } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
-
-const apiUrl = 'http://localhost:3000';
+import { tap, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 interface Participant {
+  id: string;
   Salutation: string;
   'First Name': string;
   'Last Name': string;
@@ -18,7 +19,7 @@ interface Participant {
   Status: string;
   'Mobile Number': string;
   'T-Shirt Size': string;
-  CheckIn: boolean;
+  CheckIn: number;
 }
 
 
@@ -38,20 +39,16 @@ export class BodyUserListComponent implements OnInit{
   participants: any[] = []; // Array to store the users
   filteredUsers: any[] = []; // Array to store the filtered users
   searchControl = new FormControl();
-
-  
+  apiUrl = 'http://localhost:3000';
+  scrollInterval: number = 0;
+  @ViewChild('participantList', { static: false }) participantList!: ElementRef;
 
   // Inject HttpClient into the component through the constructor
   constructor(private http: HttpClient,  private userService: UserService) { }
 
   // ngOnInit is a lifecycle hook that is called after Angular has initialized all data-bound properties of a directive.
   ngOnInit() {
-    // this.getAllParticipants(); // Call the method when the component is initialized
-    // this.searchControl.valueChanges.subscribe(searchTerm => {
-    //   this.filteredParticipants = this.participants.filter(participant =>
-    //     participant['First Name'].toLowerCase().includes(searchTerm.toLowerCase()) 
-    //   );
-    // });
+  
     this.getAllParticipants(); // Call the method when the component is initialized
 
     this.searchControl.valueChanges
@@ -62,10 +59,12 @@ export class BodyUserListComponent implements OnInit{
       .subscribe(value => this.filteredParticipants = value);
   }
 
+
   // Method to get all participants
   getAllParticipants() { 
     this.userService.getAllParticipants().subscribe(data => {
       this.participants = data.map(participant => ({
+        id: participant._id,
         Salutation: participant.Salutation,
         'First Name': participant['First Name'],
         'Last Name': participant['Last Name'],
@@ -77,7 +76,7 @@ export class BodyUserListComponent implements OnInit{
         'Mobile Number': participant['Mobile Number'],
         'T-Shirt Size': participant['T-Shirt Size'],
         CheckIn: participant.CheckIn
-      }));
+      })).slice(0, 50); //take only 50 participants
       this.filteredParticipants = this.participants;
     });
   }
@@ -90,10 +89,21 @@ export class BodyUserListComponent implements OnInit{
     );
   }
 
-  toggleCheckIn(participant: Participant) {
-    participant.CheckIn = !participant.CheckIn;
+  updateParticipantCheckIn(participant: Participant) {
+    // console.log(participant.id);
+    participant.CheckIn = participant.CheckIn === 1 ? 0 : 1;
+    this.http.put(`${this.apiUrl}/participants/checkin/${participant.id}`, { CheckIn: participant.CheckIn })
+      .subscribe({
+        next: data => {
+          // Log the data returned by the API to the console
+          // console.log(data);
+        },
+        error: error => {
+          // Log any error that occurred during the request to the console
+          console.error(error);
+        }
+      });
   }
-
 
   // Method to create a new user
   createUser(name: string, password: string) {

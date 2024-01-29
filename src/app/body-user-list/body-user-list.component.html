@@ -4,64 +4,65 @@
 <div class="container text-center">
   <div class= "content">
     <nav>
-      <button class="button" href="#home">Home</button>
-      <button class="button" href="#ImportList">Import List</button>
+
+      <button class="button" [routerLink]="['/AddParticipant']">Add Participant</button>
       <button class="button" href="#ExportList">Export List</button>
       <button class="button" href="#ViewMetrics">View Metrics</button>
     </nav>
   </div>  
 </div>
-
   <!-- Button for filter -->
-<div class="box">
+  <div class="box">
     <div class="container-3">
         <span class="icon"><i class="fa fa-search"></i></span>
         <input type="search" id="search" [formControl]="searchControl" placeholder="Search...">
     </div>
 </div>
-  <div class="table-container-titule"> 
-    <table>
-      <thead>
-        <tr>
-          <!-- this is the titule of the each character of the participant -->
-          <th>Salutation</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Age</th>
-          <th>E-Mail</th>
-          <th>Country</th>
-          <th>Mobile Number</th>
-          <th>Category</th>
-          <th>Status</th>
-          <th>T-Shirt Size</th>
-          <th>CheckIn</th>
-        </tr>
-      </thead>
-      
-      <tbody>
-        <tr *ngFor="let participant of filteredParticipants ">
-          <td>{{participant.Salutation}}</td>
-          <td>{{ participant['First Name'] }}</td>
-          <td>{{ participant['Last Name'] }}</td>
-          <td>{{participant.Age}}</td>
-          <td>{{ participant['E-Mail'] }}</td>    
-          <td>{{participant.Country}}</td>
-          <td>{{ participant['Mobile Number'] }}</td>
-          <td>{{participant.Category}}</td>
-          <td>{{participant.Status}}</td>
-          <td>{{ participant['T-Shirt Size'] }}</td>
-          <td>
-            <button class="button-CheckIn" 
-              [class.checked-in]="participant.CheckIn === true" 
-              [class.not-checked-in]="participant.CheckIn === false"
-              (click)="toggleCheckIn(participant)">
-              {{ participant.CheckIn ? 'Checked In' : 'Not Checked In' }}
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<table>
+  <thead class="table-container-titule">
+    <tr>
+      <th class="salutation">Salutation</th>
+      <th class="first-name">First Name</th>
+      <th class="last-name">Last Name</th>
+      <th class="age">Age</th>
+      <th class="email">E-Mail</th>
+      <th class="country">Country</th>
+      <th class="mobile-number">Mobile Number</th>
+      <th class="category">Category</th>
+      <th class="status">Status</th>
+      <th class="tshirt-size">T-Shirt Size</th>
+      <th class="checkin">CheckIn</th>
+    </tr>
+  </thead>
+  <tbody class="table-container-body">
+    <div #participantList class="participant-list">
+      <tr *ngFor="let participant of filteredParticipants ">
+        <td class="salutation">{{participant.Salutation}}</td>
+        <td class="first-name">{{ participant['First Name'] }}</td>
+        <td class="last-name">{{ participant['Last Name'] }}</td>
+        <td class="age">{{participant.Age}}</td>
+        <td class="email">{{ participant['E-Mail'] }}</td>    
+        <td class="country">{{participant.Country}}</td>
+        <td class="mobile-number">{{ participant['Mobile Number'] }}</td>
+        <td class="category">{{participant.Category}}</td>
+        <td class="status">{{participant.Status}}</td>
+        <td class="tshirt-size">{{ participant['T-Shirt Size'] }}</td>
+        <td class="checkin">
+          <button class="button-CheckIn" 
+            [class.checked-in]="participant.CheckIn === 1" 
+            [class.not-checked-in]="participant.CheckIn === 0"
+            (click)="updateParticipantCheckIn(participant)">
+            {{ participant.CheckIn === 1 ? 'Checked In' : 'Not Checked In' }}
+          </button>
+        </td>
+      </tr>
+    </div>  
+  </tbody>
+</table>
+
+
+
+
 
 
 

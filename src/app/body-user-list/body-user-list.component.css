@@ -1,10 +1,21 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f4f1;
-    margin: 0;
-    padding: 0;
+
+@media (max-width: 600px) {
+   .last-name, .age, .email, .country, .mobile-number, .category, .status, .tshirt-size {
+    display: none;
+  }
 }
 
+@media (min-width: 601px) and (max-width: 900px) {
+    .age, .email, .country,  .category, .status, .tshirt-size {
+    display: none;
+  }
+}
+
+@media (min-width: 901px) {
+  .salutation, .first-name, .last-name, .age, .email, .country, .mobile-number, .category, .status, .tshirt-size, .checkin {
+    width: 100px;
+  }
+}
 /* search*/
 .container-3{
     width: 300px;
@@ -38,7 +49,6 @@ body {
   }
   .container-3 input#search::-webkit-input-placeholder {
     color: #65737e;
-    
 
  }
  .container-3 input#search:-moz-placeholder { /* Firefox 18- */
@@ -100,13 +110,38 @@ body {
     overflow-y: auto; 
   }
 
+  .table-container-body {
+    font-family: 'KG Life is Messy', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-spacing: 10px;
+  }
+  .table-container-body table {
+    text-align: justify;
+    width: 1000px; 
+    height: 500px; 
+    overflow: auto;
+
+  }
+  .table-container-body td, .table-container-body th {
+    padding: 10px;
+    width: 100px;
+    text-align: center;
+  }
+
+
   thead {
     font-size: 1.3em; 
     border-bottom: 3px solid #000; 
     
   }
+  tbody {
+    font-size: 1.2em; 
+    border-bottom: 1px solid #000; 
+  }
 
-  
   td {
     border-right: 1px solid #000; 
     border-bottom: 1.5px solid #000; 
@@ -115,13 +150,10 @@ body {
   td:last-child {
     border-right: none; 
   }
-  
-.container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #f8f4f1;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+.participant-list {
+  max-height: 700px; 
+  overflow-y: auto;
 }
 
 h1 {
@@ -134,27 +166,6 @@ label {
     color: #8cbc54;
 }
 
-input {
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    margin-bottom: 20px;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-li:last-child {
-    border-bottom: none;
-}
 
 .button-CheckIn {
   border: 2px solid red;
@@ -178,3 +189,28 @@ li:last-child {
   color: white;
 
 }
+
+
+
+
+/* input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+} */
+/* 
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+} */
+
+/* li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+li:last-child {
+    border-bottom: none;
+} */
