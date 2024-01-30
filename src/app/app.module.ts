@@ -19,10 +19,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 
 
 import { RouterModule, Routes } from "@angular/router";
 import { routing } from './app.routing';
+import { AddParticipantComponent } from './add-participant/add-participant.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { routing } from './app.routing';
     BodyUserListComponent,
     DashboardComponent,
     LoginComponent,
+    AddParticipantComponent,
     RegisterComponent
     
   ],
@@ -50,6 +53,7 @@ import { routing } from './app.routing';
     AuthRoutingModule,
     HttpClientModule,
     RouterModule,
+    MatSelectModule,
     ReactiveFormsModule
   ],
   providers: [],

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from '../Service/user.service';
 import { FormControl } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
+
 import { tap, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
@@ -33,7 +34,10 @@ interface Participant {
 export class BodyUserListComponent implements OnInit{
 
   // Declare variables for search functionality
-  searchTerm: string = '';
+  countCheckIn1!: number;
+  totalParticipants!: number;
+  userCount: number = 0;
+  searchTerm!: string;
   filteredParticipants: Participant[] = []; // Array to store the filtered participants
   users: any[] = []; // Array to store the users
   participants: any[] = []; // Array to store the users
@@ -57,6 +61,8 @@ export class BodyUserListComponent implements OnInit{
         map(value => this._filterParticipants(value))
       )
       .subscribe(value => this.filteredParticipants = value);
+    
+
   }
 
 
@@ -76,9 +82,11 @@ export class BodyUserListComponent implements OnInit{
         'Mobile Number': participant['Mobile Number'],
         'T-Shirt Size': participant['T-Shirt Size'],
         CheckIn: participant.CheckIn
-      })).slice(0, 50); //take only 50 participants
+      })).slice(0, 100); //take only 50 participants
       this.filteredParticipants = this.participants;
+      this.updateParticipantCounts();
     });
+
   }
 
   private _filterParticipants(value: string): Participant[] {
@@ -103,6 +111,12 @@ export class BodyUserListComponent implements OnInit{
           console.error(error);
         }
       });
+    this.updateParticipantCounts();
+  }
+
+  private updateParticipantCounts() {
+    this.countCheckIn1 = this.participants.filter(participant => participant.CheckIn === 1).length;
+    this.totalParticipants = this.participants.length;
   }
 
   // Method to create a new user

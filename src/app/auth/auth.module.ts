@@ -7,6 +7,7 @@ import { UserService } from '../Service/user.service';
 import { AuthRoutingModule } from './auth.routing.module';
 
 
+
 @NgModule({
     declarations: [
         // LoginComponent,
