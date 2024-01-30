@@ -88,7 +88,6 @@
 
   .table-container-titule {
     font-family: 'KG Life is Messy', sans-serif;
-    display: flex;
     justify-content: center;
     align-items: center;
     
@@ -110,10 +109,9 @@
   }
 
   .table-container-body {
-    font-family: 'KG Life is Messy', sans-serif;
-    display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 20px;
     width: 100%;
     border-spacing: 10px;
   }
@@ -189,7 +187,6 @@ label {
 
 }
 
-
 .table-scroll {
   position: relative;
   max-width: 1280px;
@@ -218,16 +215,10 @@ label {
 .table-scroll th, .table-scroll td {
   padding: 5px 10px;
   border: 1px solid #000;
-  background: #fff;
+  background: #f8f4f1;
   vertical-align: top;
 }
-.faux-table table {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  pointer-events: none;
-}
+
 .faux-table table tbody {
   visibility: hidden;
 }
@@ -244,7 +235,7 @@ label {
 }
 .faux-table thead th, .faux-table tfoot th, .faux-table tfoot td,
 .table-wrap thead th, .table-wrap tfoot th, .table-wrap tfoot td{
-  background: #ccc;
+  background: #d4cec9;
 }
 .faux-table {
   position:absolute;
@@ -254,10 +245,7 @@ label {
   bottom:0;
   overflow-y:scroll;
 }
-.faux-table thead, .faux-table tfoot, .faux-table thead th, .faux-table tfoot th, .faux-table tfoot td {
-  position:relative;
-  z-index:2;
-}
+
 /* ie bug */
 .table-scroll table thead tr,
 .table-scroll table thead tr th,
