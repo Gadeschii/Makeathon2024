@@ -1,66 +1,99 @@
-// import { Component, OnInit } from '@angular/core';
-// import { UserService } from '../Service/user.service';
-// import { Chart } from 'chart.js';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../Service/user.service';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { AfterViewInit } from '@angular/core';
+
+import {
+  AgBarSeriesOptions,
+  AgChartOptions,
+  AgCharts,
+} from "ag-charts-community";
+
+@Component({
+  selector: 'app-view-metrics',
+  templateUrl: './view-metrics.component.html',
+  styleUrls: ['./view-metrics.component.css']
+})
+export class ViewMetricsComponent implements AfterViewInit {
+  public options: any = {};
+  public participantCountriesCount: { [key: string]: number } = {};
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private http: HttpClient) {
+
+  }
+
+  ngAfterViewInit() {
+    this.updateChart();
+    this.getParticipantCountriesCount();
+  }
+
+  updateChart() {
+    this.userService.getAllParticipants().subscribe(data => {
+      const totalParticipants = data.length;
+      const checkedInCount = data.filter(participant => participant.CheckIn === 1).length;
+      this.options = {
+        data: [
+          { category: 'Total Participants', value: totalParticipants },
+          { category: 'Checked In Participants', value: checkedInCount },
+        ],
+        series: [
+          {
+            type: 'pie',
+            angleKey: 'value',
+            labelKey: 'category',
+            label: { // Agrega esta sección
+              minAngle: 0,
+              innerRadius: '40%',
+              outerRadius: '80%',
+              color: '#333',
+            },
+          },
+        ],
+        legend: [
+          {
+            position: 'bottom',
+            marker: {
+              shape: 'square',
+            },
+          },
+        ],
+      };
+    });
+  }
+
+  getParticipantCountriesCount() {
+    this.userService.getAllParticipants().subscribe(data => {
+      data.forEach(participant => {
+        if (participant.country in this.participantCountriesCount) {
+          this.participantCountriesCount[participant.country]++;
+        } else {
+          this.participantCountriesCount[participant.country] = 1;
+        }
+      });
+
+      const chartData = Object.entries(this.participantCountriesCount).map(([country, count]) => ({ country, count }));
+
+      this.options = {
+        data: chartData,
+        series: [
+          {
+            type: 'column',
+            xKey: 'country',
+            yKey: 'count',
+          },
+        ],
+        legend: {
+          enabled: false,
+        },
+      };
+    });
+  }
 
 
-// @Component({
-//   selector: 'app-view-metrics',
-//   standalone: true,
-//   imports: [],
-//   templateUrl: './view-metrics.component.html',
-//   styleUrl: './view-metrics.component.css'
-// })
-// export class ViewMetricsComponent implements OnInit {
-//   chart: Chart;
 
-//   constructor(private userService: UserService) {}
+}
 
-//   ngOnInit() {
-//     this.userService.getAllParticipants().subscribe(data => {
-//       this.participants = data.map(participant => ({
-//         id: participant._id,
-//         Salutation: participant.Salutation,
-//         'First Name': participant['First Name'],
-//         'Last Name': participant['Last Name'],
-//         Age: participant.Age,
-//         'E-Mail': participant['E-Mail'],
-//         Country: participant.Country,
-//         Category: participant.Category,
-//         Status: participant.Status,
-//         'Mobile Number': participant['Mobile Number'],
-//         'T-Shirt Size': participant['T-Shirt Size'],
-//         CheckIn: participant.CheckIn
-//       }));
-  
-//       // Update the totalParticipants variable
-//       this.totalParticipants = this.participants.length;
-  
-//       // Calculate the number of participants with CheckIn = 1
-//       this.checkedInParticipants = this.participants.filter(participant => participant.CheckIn === 1).length;
-  
-//       // Create the chart
-//       this.chart = new Chart('canvas', {
-//         type: 'bar',
-//         data: {
-//           labels: ['Total Participants', 'Checked In Participants'],
-//           datasets: [{
-//             data: [this.totalParticipants, this.checkedInParticipants],
-//             backgroundColor: ['#3cba9f', '#ffcc00'],
-//           }]
-//         },
-//         options: {
-//           legend: {
-//             display: false
-//           },
-//           scales: {
-//             yAxes: [{
-//               ticks: {
-//                 beginAtZero: true
-//               }
-//             }]
-//           }
-//         }
-//       });
-//     });
-//   }
-// }
+

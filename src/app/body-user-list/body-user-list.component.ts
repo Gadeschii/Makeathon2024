@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from '../Service/user.service';
 import { FormControl } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
-
+import { Observable } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
@@ -31,7 +31,7 @@ interface Participant {
 })
 
 // Define the component
-export class BodyUserListComponent implements OnInit{
+export class BodyUserListComponent implements OnInit {
 
   // Declare variables for search functionality
   countCheckIn1!: number;
@@ -45,14 +45,22 @@ export class BodyUserListComponent implements OnInit{
   searchControl = new FormControl();
   apiUrl = 'http://localhost:3000';
   scrollInterval: number = 0;
+
+  checkedInParticipantsCount: number = 0;
+  participantCount: number = 0;
+  participantCountriesCount: { [key: string]: number } = {};
+
+
+
+
   @ViewChild('participantList', { static: false }) participantList!: ElementRef;
 
   // Inject HttpClient into the component through the constructor
-  constructor(private http: HttpClient,  private userService: UserService) { }
+  constructor(private http: HttpClient, private userService: UserService) { }
 
   // ngOnInit is a lifecycle hook that is called after Angular has initialized all data-bound properties of a directive.
   ngOnInit() {
-  
+
     this.getAllParticipants(); // Call the method when the component is initialized
 
     this.searchControl.valueChanges
@@ -61,13 +69,12 @@ export class BodyUserListComponent implements OnInit{
         map(value => this._filterParticipants(value))
       )
       .subscribe(value => this.filteredParticipants = value);
-    
+
   }
 
 
   // Method to get all participants
-  getAllParticipants() { 
-     
+  getAllParticipants() {
     this.userService.getAllParticipants().subscribe(data => {
       this.participants = data.map(participant => ({
         id: participant._id,
@@ -87,44 +94,35 @@ export class BodyUserListComponent implements OnInit{
       this.filteredParticipants = this.participants;
       this.updateParticipantCounts();
 
-       // Update the totalParticipants variable
-    this.totalParticipants = this.participants.length;
+      // Update the totalParticipants variable
+      this.totalParticipants = this.participants.length;
     });
   }
 
-  // createChart() {
-  //   // Calculate the number of participants with CheckIn = 1
-  //   this.checkedInParticipants = this.participants.filter(participant => participant.CheckIn === 1).length;
-  
-  //   // Create the chart
-  //   this.chart = new Chart('canvas', {
-  //     type: 'bar',
-  //     data: {
-  //       labels: ['Total Participants', 'Checked In Participants'],
-  //       datasets: [{
-  //         data: [this.totalParticipants, this.checkedInParticipants],
-  //         backgroundColor: ['#3cba9f', '#ffcc00'],
-  //       }]
-  //     },
-  //     options: {
-  //       legend: {
-  //         display: false
-  //       },
-  //       scales: {
-  //         yAxes: [{
-  //           ticks: {
-  //             beginAtZero: true
-  //           }
-  //         }]
-  //       }
-  //     }
-  //   });
-  // }
+  getTotalParticipants() {
+    this.userService.getAllParticipants().subscribe(data => {
+      this.participantCount = data.length;
+    });
+  }
 
+  getCheckedInParticipantsCount() {
+    this.userService.getAllParticipants().subscribe(data => {
+      const checkedInCount = data.filter(participant => participant.CheckIn === 1).length;
+      console.log(checkedInCount);
+    });
+  }
 
-
-
-
+  getParticipantCountriesCount() {
+    this.userService.getAllParticipants().subscribe(data => {
+      data.forEach(participant => {
+        if (participant.country in this.participantCountriesCount) {
+          this.participantCountriesCount[participant.country]++;
+        } else {
+          this.participantCountriesCount[participant.country] = 1;
+        }
+      });
+    });
+  }
 
   private _filterParticipants(value: string): Participant[] {
     const filterValue = value.toLowerCase();
@@ -133,7 +131,7 @@ export class BodyUserListComponent implements OnInit{
       (participant['First Name'] && participant['First Name'].toLowerCase().includes(filterValue)) ||
       (participant['E-Mail'] && participant['E-Mail'].toLowerCase().includes(filterValue)) ||
       (participant['Mobile Number'] && participant['Mobile Number'].toString().includes(filterValue))
-      );
+    );
   }
 
   updateParticipantCheckIn(participant: Participant) {
@@ -187,6 +185,6 @@ export class BodyUserListComponent implements OnInit{
 
 }
 
-export class BodyUserListModule { 
-  
+export class BodyUserListModule {
+
 }

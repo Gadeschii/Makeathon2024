@@ -22,10 +22,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 
 
+import { AgChartsAngularModule } from "ag-charts-angular";
 import { RouterModule, Routes } from "@angular/router";
 import { routing } from './app.routing';
 import { AddParticipantComponent } from './add-participant/add-participant.component';
-//import { ViewMetricsComponent } from './view-metrics/view-metrics.component';
+import { ViewMetricsComponent } from './view-metrics/view-metrics.component';
 
 @NgModule({
   declarations: [
@@ -35,9 +36,8 @@ import { AddParticipantComponent } from './add-participant/add-participant.compo
     DashboardComponent,
     LoginComponent,
     AddParticipantComponent,
-    //ViewMetricsComponent,
-    RegisterComponent
-    
+    ViewMetricsComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +56,9 @@ import { AddParticipantComponent } from './add-participant/add-participant.compo
     HttpClientModule,
     RouterModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgChartsAngularModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
