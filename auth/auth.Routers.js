@@ -24,4 +24,6 @@ module.exports = (router) => {
 
     //Route for collection from database
     router.put('/participants/checkin/:id', UsersController.updateCheckIn);
+
+    router.post('/auth/addparticipant', UsersController.addParticipant);
 }

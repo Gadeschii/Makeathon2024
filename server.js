@@ -25,7 +25,11 @@ app.use(bodyParserJSON);
 app.use(bodyParserURLEncoded);
 
 // Use CORS middleware to handle cross-origin requests
-app.use(cors());
+var corsOptions = {
+    origin: ['http://localhost:4200', 'http://localhost:3000'], // Reemplaza estos con tus dominios
+    optionsSuccessStatus: 200 // Algunos navegadores antiguos (IE11, varios SmartTVs) fallan con 204
+  }
+app.use(cors(corsOptions));
 
 // Use the router for routes starting with '/api'
 app.use('/api', router);  

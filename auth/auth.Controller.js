@@ -150,6 +150,76 @@ exports.updateCheckIn = (req, res, next) => {
 }
 
 
+exports.addParticipant = (req, res, next) => {
+    // Create a new participant object with the request data
+    const newParticipant = new ITQParticipants({
+        Salutation: req.body.Salutation,
+        "First Name": req.body['First Name'],
+        "Last Name": req.body['Last Name'],
+        "E-mail": req.body['E-Mail'],
+        "Mobile Number": req.body['Mobile Number'],
+        CheckIn: 1
+    });
+
+    // Save the new participant in the database
+    newParticipant.save()
+        .then(participant => {
+            // If the participant is created successfully, send a success response
+            res.status(201).send(participant);
+        })
+        .catch(err => {
+            // If there was an error saving the participant, send a server error response
+            console.error(err);
+            return res.status(500).send('Server error');
+        });
+}
+
+
+
+// // Function addParticipant
+// exports.addParticipant = (req, res, next) => {
+//     // Check if a participant with the same first name, last name, email, and mobile number already exists
+//     ITQParticipants.findOne({
+//         'First Name': req.body.firstName,
+//         'Last Name': req.body.lastName,
+//         'E-Mail': req.body.email,
+//         'Mobile Number': req.body.mobileNumber
+//     })
+//     .then(existingParticipant => {
+//         if (existingParticipant) {
+//             // If a participant with the same details already exists, send an error response
+//             return res.status(400).send('Participant already exists');
+//         } else {
+//             // If no such participant exists, create a new participant object with the request data
+//             const newParticipant = new ITQParticipants({
+//                 Salutation: req.body.salutation,
+//                 'First Name': req.body.firstName,
+//                 'Last Name': req.body.lastName,
+//                 'E-mail': req.body.email,
+//                 'Mobile Number': req.body.mobileNumber,
+//                 CheckIn: 1
+//             });
+//             // Save the new participant in the database
+//             newParticipant.save()
+//                 .then(participant => {
+//                     res.status(201).send(participant);
+//                     // If the participant is created successfully, send a success response
+//                     //res.status(201).send('Participant added successfully');
+//                 })
+//                 .catch(err => {
+//                     // If there was an error saving the participant, send a server error response
+//                     console.error(err);
+//                     return res.status(500).send('Server error');
+//                 });
+//         }
+//     })
+//     .catch(err => {
+//         // If there was an error checking for the existing participant, send a server error response
+//         console.error(err);
+//         return res.status(500).send('Server error');
+//     });
+// }
+
 // Function to get all users
 exports.getAllUsers = (req, res, next) => {
     // Implement logic to get all users here

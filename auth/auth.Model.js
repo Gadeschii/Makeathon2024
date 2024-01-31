@@ -37,59 +37,13 @@ const ITQCredentials = mongoose.model('ITQCredentials', ITQCredentialSchema, 'IT
 
 // Defining the schema for the ITQParticipants collection
 const ITQParticipantsSchema =  new mongoose.Schema({
+    Salutation: String,
+    'First Name': String,
+    'Last Name': String,
+    'E-Mail': String,
+    'Mobile Number': String,
+    CheckIn: Number
     
-    CheckIn: {
-        type: Number,
-        required: true
-    },
-    Category: {
-        type: String,
-        required: false
-    },
-    Country: {
-        type: String,
-        required: false
-    },
-    Salutation: {
-        type: String,
-        required: false
-    },
-    First_Name: {
-        type: String,
-        required: false
-    },
-    Last_Name: {
-        type: String,
-        required: false
-    },
-    E_Mail: {
-        type: String,
-        required: false
-    },
-    T_Shirt_Size: {
-        type: String,
-        required: false
-    },
-    Mobile_Number: {
-        type: Number,
-        required: false
-    },
-    Status: {
-        type: String,
-        required: false
-    },
-    Field_of_Studies: {
-        type: String,
-        required: false
-    },
-    Semester: {
-        type: String,
-        required: false
-    },
-    Age: {
-        type: String,
-        required: false
-    }
 });
 
 // Creating the ITQParticipants model from the schema
