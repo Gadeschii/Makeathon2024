@@ -62,7 +62,6 @@ export class BodyUserListComponent implements OnInit{
       )
       .subscribe(value => this.filteredParticipants = value);
     
-
   }
 
 
@@ -84,7 +83,7 @@ export class BodyUserListComponent implements OnInit{
         'T-Shirt Size': participant['T-Shirt Size'],
         CheckIn: participant.CheckIn
 
-      })).slice(0, 200); //take the totalParticipants value from the input field
+      })).slice(0, this.totalParticipants); //take the totalParticipants value from the input field
       this.filteredParticipants = this.participants;
       this.updateParticipantCounts();
 
@@ -93,12 +92,48 @@ export class BodyUserListComponent implements OnInit{
     });
   }
 
+  // createChart() {
+  //   // Calculate the number of participants with CheckIn = 1
+  //   this.checkedInParticipants = this.participants.filter(participant => participant.CheckIn === 1).length;
+  
+  //   // Create the chart
+  //   this.chart = new Chart('canvas', {
+  //     type: 'bar',
+  //     data: {
+  //       labels: ['Total Participants', 'Checked In Participants'],
+  //       datasets: [{
+  //         data: [this.totalParticipants, this.checkedInParticipants],
+  //         backgroundColor: ['#3cba9f', '#ffcc00'],
+  //       }]
+  //     },
+  //     options: {
+  //       legend: {
+  //         display: false
+  //       },
+  //       scales: {
+  //         yAxes: [{
+  //           ticks: {
+  //             beginAtZero: true
+  //           }
+  //         }]
+  //       }
+  //     }
+  //   });
+  // }
+
+
+
+
+
+
   private _filterParticipants(value: string): Participant[] {
     const filterValue = value.toLowerCase();
 
     return this.participants.filter(participant =>
-      participant['First Name'].toLowerCase().includes(filterValue) 
-    );
+      (participant['First Name'] && participant['First Name'].toLowerCase().includes(filterValue)) ||
+      (participant['E-Mail'] && participant['E-Mail'].toLowerCase().includes(filterValue)) ||
+      (participant['Mobile Number'] && participant['Mobile Number'].toString().includes(filterValue))
+      );
   }
 
   updateParticipantCheckIn(participant: Participant) {

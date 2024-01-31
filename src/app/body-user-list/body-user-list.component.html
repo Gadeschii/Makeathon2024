@@ -19,7 +19,6 @@
     </div>
 </div>
 
-
 <div id="table-scroll" class="table-scroll">
   <div id="table-wrap" class="table-wrap">
     <table id="main-table" class="main-table">
@@ -62,57 +61,5 @@
     </table>
   </div>
 </div>
-
-
-
-
-<!-- 
-<table>
-  <thead class="table-container-titule">
-    <tr>
-      <th class="salutation">Salutation</th>
-      <th class="first-name">First Name</th>
-      <th class="last-name">Last Name</th>
-      <th class="age">Age</th>
-      <th class="email">E-Mail</th>
-      <th class="country">Country</th>
-      <th class="mobile-number">Mobile Number</th>
-      <th class="category">Category</th>
-      <th class="status">Status</th>
-      <th class="tshirt-size">T-Shirt Size</th>
-      <th class="checkin">CheckIn</th>
-    </tr>
-  </thead>
-  <tbody class="table-container-body">
-    <div #participantList class="participant-list">
-      <tr *ngFor="let participant of filteredParticipants ">
-        <td class="salutation">{{participant.Salutation}}</td>
-        <td class="first-name">{{ participant['First Name'] }}</td>
-        <td class="last-name">{{ participant['Last Name'] }}</td>
-        <td class="age">{{participant.Age}}</td>
-        <td class="email">{{ participant['E-Mail'] }}</td>    
-        <td class="country">{{participant.Country}}</td>
-        <td class="mobile-number">{{ participant['Mobile Number'] }}</td>
-        <td class="category">{{participant.Category}}</td>
-        <td class="status">{{participant.Status}}</td>
-        <td class="tshirt-size">{{ participant['T-Shirt Size'] }}</td>
-        <td class="checkin">
-          <button class="button-CheckIn" 
-            [class.checked-in]="participant.CheckIn === 1" 
-            [class.not-checked-in]="participant.CheckIn === 0"
-            (click)="updateParticipantCheckIn(participant)">
-            {{ participant.CheckIn === 1 ? 'Checked In' : 'Not Checked In' }}
-          </button>
-        </td>
-      </tr>
-    </div>  
-  </tbody>
-</table> -->
-
-
-
-
-
-
 
 

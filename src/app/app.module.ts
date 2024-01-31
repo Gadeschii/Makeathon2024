@@ -25,6 +25,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { RouterModule, Routes } from "@angular/router";
 import { routing } from './app.routing';
 import { AddParticipantComponent } from './add-participant/add-participant.component';
+//import { ViewMetricsComponent } from './view-metrics/view-metrics.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { AddParticipantComponent } from './add-participant/add-participant.compo
     DashboardComponent,
     LoginComponent,
     AddParticipantComponent,
+    //ViewMetricsComponent,
     RegisterComponent
     
   ],

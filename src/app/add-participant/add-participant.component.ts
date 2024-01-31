@@ -28,13 +28,12 @@ export class AddParticipantComponent {
     console.log(form.value);
     if (form.valid) {
       const userData = {
-          salutation: this.salutation,
-          firstName: this.firstName,
-          lastName: this.lastName,
-          email: this.email,
-          mobileNumber: this.mobileNumber
+        Salutation: this.salutation,
+        'First Name': this.firstName,
+        'Last Name': this.lastName,
+        'E-Mail': this.email,
+        'Mobile Number': this.mobileNumber
       };
-
       this.http.post(`${this.apiUrl}/auth/addparticipant`, userData)    
             .subscribe(response => {
               console.log(response);
@@ -43,6 +42,7 @@ export class AddParticipantComponent {
               console.error(error);
           });
     }
+    this.goBack(); // Redirige a '/auth/dashboard'
   }
 
   goBack() {
