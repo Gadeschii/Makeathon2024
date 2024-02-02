@@ -1,0 +1,35 @@
+
+<div class="main-container">
+
+    <div class= "content"> 
+        <form #frmLogin="ngForm" class="login-container" (ngSubmit)="onLogin(frmLogin)">
+            
+            <div class="left-side" >
+                <mat-form-field  >
+                    <mat-label>User</mat-label>
+                    
+                    <input matInput [(ngModel)]="name" name="name" required >
+    
+                </mat-form-field>
+    
+                <mat-form-field >
+                    <mat-label>Password</mat-label>
+    
+                    <input matInput [(ngModel)]="password" name="password" type="password" required>
+    
+                </mat-form-field>
+                
+                <div>
+                    <button class="button" type = "submit"> Login </button>
+            
+                </div>
+            </div> 
+            <div class="right-side">
+                <p class="welcome-text">Makeathon 2024</p>
+                <img src="assets/images/SMGI_Logo.jpg" class="img" alt="Company Logo">
+            </div>
+        </form>
+    </div>  
+</div> 
+
+

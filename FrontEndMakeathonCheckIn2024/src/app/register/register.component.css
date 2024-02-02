@@ -1,0 +1,81 @@
+@import url('https://fonts.cdnfonts.com/css/kg-life-is-messy');
+
+.titule {
+    font-family: 'KG Life is Messy', sans-serif;
+    font-size: 3em; /* Hace el título más grande */
+    text-align: center; /* Centra el título */
+}
+
+body {
+    background-color: #8cbc54;
+}
+
+
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #8cbc54;
+}
+
+.container {
+    display: flex;
+    flex-direction: column; /* Hace que los elementos se muestren en forma de lista */
+    justify-content: center; /* Centra los elementos en el contenedor */
+    align-items: center; /* Centra los elementos en el contenedor */
+    margin: 20px;
+    padding: 20px;
+    background-color: #f8f4f1;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.CreateAcount-text {
+    text-align: center; /* Centers the text */
+    margin-bottom: 10px; /* Adds a small space between the text and the image */
+    margin-right: 60px; /* Adjusts the right margin to move the text to the right */
+    font-family: 'KG Life is Messy', sans-serif;
+    font-size: 2em; /* Makes the title larger */
+}
+.registerContainer  {
+    display: flex; /* Uses the flexible box model to align the internal elements of the form */
+    align-items: center; /* Centers the form vertically within the main container */
+
+}
+
+
+.left-side {
+    text-align: left; /* Aligns the text to the left */
+    padding: 20px; /* Adds internal space to separate the content from the border */
+}
+
+.right-side {
+    text-align: right; /* Aligns the text to the right */
+
+}
+.divider {
+    border-left: 10px solid black;
+    margin: 0 20px;
+    height: 100%;
+}
+
+img {
+    width: 75%;
+    height: auto;
+    object-fit: cover;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between; /* Añade espacio entre el formulario y la imagen */
+}
+
+h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.button {
+    width: 100%;
+}

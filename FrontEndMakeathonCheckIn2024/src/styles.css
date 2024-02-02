@@ -1,0 +1,81 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Merienda:wght@300&family=Playball&display=swap');
+@import url('https://fonts.cdnfonts.com/css/kg-life-is-messy');
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+
+
+p {
+    font-size: 15px;
+}
+*{
+    margin: 5px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f4f1;
+    margin: 0;
+    padding: 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+}
+.button {
+    background-color: #f9f9f9;
+    border: 2px solid #8cbc54;
+    border-radius: 10px;
+    color: #8cbc54;
+    font-size: 16px;
+    margin: 5px;
+    padding: 10px;
+}
+.button-search {
+    background-color: #f9f9f9;
+    border: 2px solid #8cbc54;
+    border-radius: 10px;
+    color: #8cbc54;
+    font-size: 20px;
+    margin: 5px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+.button-search:hover {
+    background-color: #8cbc54;
+    border-color: #8cbc54;
+    color: white;
+    cursor: pointer;
+}
+  
+.button:hover {
+    background-color: #8cbc54;
+    border-color: #8cbc54;
+    color: white;
+    cursor: pointer;
+}
+  
+.button:active {
+    background-color: #8cbc54;
+    border-color: #b2d18f;
+    /* Cambiar la posición del botón para dar un efecto de profundidad */
+    transform: translateY(2px);
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.title {
+    font-family: 'KG Life is Messy', sans-serif;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'KG Life is Messy', sans-serif;
+}

@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="content"> 
+        <form #frmAddParticipant="ngForm" class="AddParticipantContainer" (ngSubmit)="onAddParticipant(frmAddParticipant)">
+            <div class="center">
+                <div class="left-side">
+                    <p class="AddParticipant-text">Add Participant</p>
+                    <mat-form-field>
+                        <mat-label>Salutation</mat-label>
+                        <mat-select [(value)]="salutation" >
+                          <mat-option value="Mr.">Mr.</mat-option>
+                          <mat-option value="Ms.">Ms.</mat-option>
+                          <mat-option value="Mrs.">Mrs.</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>First Name</mat-label>
+                        <input matInput [(ngModel)]="firstName" name="First Name" >
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Last Name</mat-label>
+                        <input matInput [(ngModel)]="lastName" name="Last Name" >
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input matInput [(ngModel)]="email" name="E-mail" >
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Mobile Number</mat-label>
+                        <input matInput [(ngModel)]="mobileNumber" name="Mobile Number" >
+                    </mat-form-field>
+                    <div class="center">
+                        <button class="button" type="submit" >Add and CheckIn</button>
+                    </div>
+
+                    <button class="button" (click)="goBack()">Go Back</button>
+                </div>
+            </div>
+            <div class="right-side">
+                <img src="assets/images/Smart-Green-Island-Makeathon.jpg" class="img" alt="Company Logo">
+            </div>
+        </form>
+    </div>
+</div> 

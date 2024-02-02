@@ -1,0 +1,257 @@
+
+@media (max-width: 600px) {
+   .last-name, .age, .email, .country, .mobile-number, .category, .status, .tshirt-size {
+    display: none;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .age, .email, .country,  .category, .status, .tshirt-size {
+    display: none;
+  }
+}
+
+@media (min-width: 901px) {
+  .salutation, .first-name, .last-name, .age, .email, .country, .mobile-number, .category, .status, .tshirt-size, .checkin {
+    width: 100px;
+  }
+}
+/* search*/
+.container-3{
+    width: 300px;
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+ 
+  }
+  .container-3 input#search{
+    width: 300px;
+    height: 50px;
+    background: #d4cec9;
+    border: none;
+    font-size: 15pt;
+    float: left;
+    color: #5d7e37;
+    padding-left: 45px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color: #5d7e37;/*color letter*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70vw;
+
+  }
+  .container-3 input#search::-webkit-input-placeholder {
+    color: #65737e;
+
+ }
+ .container-3 input#search:-moz-placeholder { /* Firefox 18- */
+    color: #65737e;  
+ }
+ .container-3 input#search::-moz-placeholder {  /* Firefox 19+ */
+    color: #65737e;  
+ }
+ .container-3 input#search:-ms-input-placeholder {  
+    color: #65737e;  
+ }
+ .container-3 .icon{
+    position: absolute;
+    margin-left: -1270px;
+    margin-top: -10px;
+    z-index: 1;
+    color: #5d7e37;
+     -webkit-transition: all .55s ease;
+    -moz-transition: all .55s ease;
+    -ms-transition: all .55s ease;
+    -o-transition: all .55s ease;
+    transition: all .55s ease;
+  }
+  .container-3 input#search:focus, .container-3 input#search:active{
+    outline:none; 
+}
+.container-3:hover .icon{
+  margin-top: -10px;
+  color: #5d7e37;
+  -webkit-transform:scale(1.5); /* Safari and Chrome */
+  -moz-transform:scale(1.5); /* Firefox */
+  -ms-transform:scale(1.5); /* IE 9 */
+  -o-transform:scale(1.5); /* Opera */
+   transform:scale(1.5);
+  }
+  /* Search end */
+
+  .table-container-titule {
+    font-family: 'KG Life is Messy', sans-serif;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  .table-container-titule table {
+    text-align: justify;
+    width: 100%; /* Adjust this value to change the width of the table */
+  }
+
+  .table-container-titule td, .table-container-titule th {
+    padding: 10px;
+    text-align: center;
+  }
+
+  table {
+    display: block;
+    overflow-y: auto; 
+  }
+
+  .table-container-body {
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    width: 100%;
+    border-spacing: 10px;
+  }
+  .table-container-body table {
+    text-align: justify;
+    width: 1000px; 
+    height: 500px; 
+    overflow: auto;
+
+  }
+  .table-container-body td, .table-container-body th {
+    padding: 10px;
+    width: 100px;
+    text-align: center;
+  }
+
+
+  thead {
+    font-size: 1.3em; 
+    border-bottom: 3px solid #000; 
+    
+  }
+  tbody {
+    font-size: 1.2em; 
+    border-bottom: 1px solid #000; 
+  }
+
+  td {
+    border-right: 1px solid #000; 
+    border-bottom: 1.5px solid #000; 
+  }
+  
+  td:last-child {
+    border-right: none; 
+  }
+
+.participant-list {
+  max-height: 700px; 
+  overflow-y: auto;
+}
+
+h1 {
+    color: #8cbc54;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #8cbc54;
+}
+
+
+.button-CheckIn {
+  border: 2px solid red;
+  background-color: red;
+  color: white;
+  border-radius: 10px;
+  font-size: 20px;
+  margin: 5px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.button-CheckIn.checked-in {
+  background-color: #8cbc54;
+  border: 2px solid #8cbc54;
+  color: white;
+}
+
+.button-CheckIn.not-checked-in {
+  background-color: red;
+  color: white;
+
+}
+
+.table-scroll {
+  position: relative;
+  max-width: 1280px;
+  width:100%;
+  margin: auto;
+  display:table;
+}
+.table-wrap {
+  width: 100%;
+  display:block;
+  overflow: auto;
+  position:relative;
+  z-index:1;
+}
+.table-wrap.fixedON,
+.table-wrap.fixedON table,
+.faux-table table {
+  height: 300px;/* match heights*/
+}
+.table-scroll table {
+  width: 100%;
+  margin: auto;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.table-scroll th, .table-scroll td {
+  padding: 5px 10px;
+  border: 1px solid #000;
+  background: #f8f4f1;
+  vertical-align: top;
+}
+
+.faux-table table tbody {
+  visibility: hidden;
+}
+/* shrink cells in cloned table so that the table height is exactly 300px so that the header and footer appear fixed */
+.faux-table table tbody th, .faux-table table tbody td {
+  padding-top:0;
+  padding-bottom:0;
+  border-top:none;
+  border-bottom:none;
+  line-height:0.1;
+}
+.faux-table table tbody tr + tr th, .faux-table tbody tr + tr td {
+  line-height:0;
+}
+.faux-table thead th, .faux-table tfoot th, .faux-table tfoot td,
+.table-wrap thead th, .table-wrap tfoot th, .table-wrap tfoot td{
+  background: #d4cec9;
+}
+.faux-table {
+  position:absolute;
+  top:0;
+  right:0;
+  left:0;
+  bottom:0;
+  overflow-y:scroll;
+}
+
+/* ie bug */
+.table-scroll table thead tr,
+.table-scroll table thead tr th,
+.table-scroll table tfoot  tr,
+.table-scroll table tfoot  tr th,
+.table-scroll table tfoot  tr td{height:1px;}
+a:focus {
+  background:red
+}/* testing links*/

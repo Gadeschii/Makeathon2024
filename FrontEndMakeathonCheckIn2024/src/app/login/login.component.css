@@ -1,0 +1,82 @@
+@import url('https://fonts.cdnfonts.com/css/kg-life-is-messy');
+
+.titule {
+    font-family: 'KG Life is Messy', sans-serif;
+    font-size: 3em; /* Makes the title larger */
+    text-align: center; /* Centers the title */
+}
+body {
+    background-color: #8cbc54;
+}
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #8cbc54;
+}
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f8f4f1;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.left-side {
+    text-align: left; /* Aligns the text to the left */
+    padding: 20px; /* Adds internal space to separate the content from the border */
+}
+
+.right-side {
+    text-align: right; /* Aligns the text to the right */
+}
+
+.login-container {
+    display: flex; /* Uses the flexible box model to align the internal elements of the form */
+    align-items: center; /* Centers the form vertically within the main container */
+}
+
+.button {
+    width: 100%;
+}
+
+.title {
+    text-align: center;
+    font-family: 'KG Life is Messy', sans-serif;
+}
+
+.divider {
+    border-left: 10px solid black;
+    margin: 0 20px;
+    height: 100%;
+}
+
+.welcome-text {
+    text-align: center; /* Centers the text */
+    margin-bottom: 10px; /* Adds a small space between the text and the image */
+    margin-left: 65px; /* Adjusts the right margin to move the text to the right */
+    font-family: 'KG Life is Messy', sans-serif;
+    font-size: 4em; /* Makes the title larger */
+}
+
+.year-text {
+    text-align: center; /* Centers the text */
+    margin-top: 10px; /* Adds a small space between the image and the text */
+    margin-left: 60px; /* Adjusts the right margin to move the text to the right */
+    font-family: 'KG Life is Messy', sans-serif;
+    font-size: 4em; /* Makes the title larger */
+}
+
+h1{
+    font-family: 'KG Life is Messy', sans-serif;
+    text-align: right;
+}
+
+img {
+    width: 75%;
+    height: auto;
+    object-fit: cover;
+}
