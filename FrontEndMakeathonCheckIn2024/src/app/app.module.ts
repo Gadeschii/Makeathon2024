@@ -20,6 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+
 
 
 import { AgChartsAngularModule } from "ag-charts-angular";
@@ -60,7 +62,7 @@ import { ViewMetricsComponent } from './view-metrics/view-metrics.component';
     AgChartsAngularModule,
     
   ],
-  providers: [],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
