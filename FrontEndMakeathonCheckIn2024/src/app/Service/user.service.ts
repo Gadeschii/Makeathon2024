@@ -12,7 +12,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 
 export class UserService {
-  readonly apiUrl = 'http://localhost:3000';
+  readonly apiUrl = 'https://gadeschii.github.io/Makeathon2024/';
   AUTH_SERVER: string = this.apiUrl;
   authSubject = new BehaviorSubject(false);
 
