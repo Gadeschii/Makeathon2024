@@ -12,18 +12,17 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 
 export class UserService {
+  // readonly apiUrl = 'http://localhost:3000';
+  //  AUTH_SERVER: string = this.apiUrl;
   readonly apiUrl = 'https://gadeschii.github.io/Makeathon2024/';
   readonly RaspberryPiIP = '10.10.217.150';
   readonly AUTH_SERVER = `http://${this.RaspberryPiIP}:3000`;
   authSubject = new BehaviorSubject(false);
-
   private token!: string;
-
   constructor(private httpClient: HttpClient) { }
 
   // Autenticar con el servidor NodeJS
   register(user: IUser): Observable<IJwtResponse> {
-
     return this.httpClient.post<IJwtResponse>(`${this.AUTH_SERVER}/register`,
       user).pipe(tap(
         (res: IJwtResponse) => {
@@ -34,7 +33,6 @@ export class UserService {
         }
       ));
   }
-
 
   login(user: IUser): Observable<IJwtResponse> {
     return this.httpClient.post<IJwtResponse>(`${this.AUTH_SERVER}/login`,
@@ -47,7 +45,6 @@ export class UserService {
         }
       ));
   }
-
 
   logout(): void {
     this.token = '';

@@ -1,5 +1,20 @@
 @import url('https://fonts.cdnfonts.com/css/kg-life-is-messy');
 
+@media (min-width: 600px) {
+    .login-container {
+      width: 400px;
+      margin: 0 auto;
+    }
+}
+
+.login-container {
+    display: flex; /* Uses the flexible box model to align the internal elements of the form */
+    align-items: center; /* Centers the form vertically within the main container */
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}  
+
 .titule {
     font-family: 'KG Life is Messy', sans-serif;
     font-size: 3em; /* Makes the title larger */
@@ -34,10 +49,7 @@ body {
     text-align: right; /* Aligns the text to the right */
 }
 
-.login-container {
-    display: flex; /* Uses the flexible box model to align the internal elements of the form */
-    align-items: center; /* Centers the form vertically within the main container */
-}
+
 
 .button {
     width: 100%;
