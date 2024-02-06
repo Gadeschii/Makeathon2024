@@ -43,6 +43,11 @@
     display: none;
   }
 }
+table {
+ 
+  padding-bottom: 50px;
+}
+
 
 /* search*/
 .container-3{
