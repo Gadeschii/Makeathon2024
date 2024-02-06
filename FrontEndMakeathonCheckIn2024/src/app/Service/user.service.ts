@@ -12,11 +12,11 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 
 export class UserService {
-  // readonly apiUrl = 'http://localhost:3000';
-  //  AUTH_SERVER: string = this.apiUrl;
-  readonly apiUrl = 'https://gadeschii.github.io/Makeathon2024/';
-  readonly RaspberryPiIP = '10.10.217.150';
-  readonly AUTH_SERVER = `http://${this.RaspberryPiIP}:3000`;
+  readonly apiUrl = 'http://localhost:3000';
+   AUTH_SERVER: string = this.apiUrl;
+  // readonly apiUrl = 'https://gadeschii.github.io/Makeathon2024/';
+  // readonly RaspberryPiIP = '10.10.217.150';
+  // readonly AUTH_SERVER = `http://${this.RaspberryPiIP}:3000`;
   authSubject = new BehaviorSubject(false);
   private token!: string;
   constructor(private httpClient: HttpClient) { }
