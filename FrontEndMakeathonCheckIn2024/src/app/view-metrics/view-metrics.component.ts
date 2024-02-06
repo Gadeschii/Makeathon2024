@@ -204,9 +204,7 @@ export class ViewMetricsComponent implements AfterViewInit {
           return Promise.resolve(); // Devuelve una promesa resuelta cuando data es null
         }
       });
-
       Promise.all(promises).then(() => pdf.save('MetricMakeathon2024.pdf'));
     };
   }
-
 }

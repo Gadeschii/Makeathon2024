@@ -1,7 +1,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-<div class="container text-center">
+<!-- <div class="container text-center">
   <div class= "content">
     <nav>
       <button class="button" [routerLink]="['/auth/addparticipant']">Add Participant</button>    
@@ -10,12 +10,26 @@
       <span>{{countCheckIn1}} / {{totalParticipants}} </span>
     </nav>
   </div>  
-</div>
+</div> -->
 
 <div class="box">
+  <p>&nbsp;&nbsp;&nbsp;</p>
   <div class="container-3">
-    <span class="icon"><i class="fa fa-search"></i></span>
     <input type="search" id="search" [formControl]="searchControl" placeholder="Search...">
+    <p>&nbsp;&nbsp;&nbsp;</p>
+    <p>&nbsp;&nbsp;&nbsp;</p>
+    <p>&nbsp;&nbsp;&nbsp;</p>
+    <p>&nbsp;&nbsp;&nbsp;</p>
+    <p>&nbsp;&nbsp;&nbsp;</p>
+    <nav>
+      <button class="button" [routerLink]="['/auth/addparticipant']">Add Participant</button>    
+      <button class="button" [routerLink]="['/auth/exportlist']">Export List</button>
+      <button class="button" [routerLink]="['/auth/viewmetrics']">View Metrics</button>
+      <span>{{countCheckIn1}} / {{totalParticipants}} </span>
+    </nav>
+  </div>
+  <div>
+    
   </div>
 </div>
   <div id="table-scroll" class="table-scroll">

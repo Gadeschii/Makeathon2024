@@ -23,7 +23,6 @@ interface Participant {
   CheckIn: number;
 }
 
-
 @Component({
   selector: 'app-body-user-list',
   templateUrl: './body-user-list.component.html',
