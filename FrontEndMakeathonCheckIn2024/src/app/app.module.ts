@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { FooterComponent } from './footer/footer.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -35,6 +36,7 @@ import { ViewMetricsComponent } from './view-metrics/view-metrics.component';
     AppComponent,
     HeaderComponent,
     BodyUserListComponent,
+    FooterComponent,
     DashboardComponent,
     LoginComponent,
     AddParticipantComponent,

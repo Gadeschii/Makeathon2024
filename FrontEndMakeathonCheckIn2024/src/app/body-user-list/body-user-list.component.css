@@ -1,21 +1,49 @@
 
-@media (max-width: 600px) {
-   .last-name, .age, .email, .country, .mobile-number, .category, .status, .tshirt-size {
+@media (max-width: 600px) { 
+  .column-salutation,
+  .column-age,
+  .column-email,
+  .column-country,
+  .column-mobile-number,
+  .column-category,
+  .column-status,
+  .column-tshirt-size {
     display: none;
   }
 }
 
-@media (min-width: 601px) and (max-width: 900px) {
-    .age, .email, .country,  .category, .status, .tshirt-size {
+@media (min-width: 601px) and (max-width: 800px) {
+  .column-age,
+  .column-email,
+  .column-country,
+  .column-category,
+  .column-status,
+  .column-tshirt-size {
     display: none;
   }
 }
 
-@media (min-width: 901px) {
-  .salutation, .first-name, .last-name, .age, .email, .country, .mobile-number, .category, .status, .tshirt-size, .checkin {
-    width: 100px;
+@media (min-width: 801px) and (max-width: 900px) {
+  .column-salutation,
+  .column-age,
+  .column-country,
+  .column-category,
+  .column-status,
+  .column-tshirt-size {
+    display: none;
   }
 }
+
+@media (min-width: 901px) and (max-width: 1400px) {
+  .column-age,
+  .column-country,
+  .column-category,
+  .column-status,
+  .column-tshirt-size {
+    display: none;
+  }
+}
+
 /* search*/
 .container-3{
     width: 300px;
@@ -26,8 +54,8 @@
     justify-content: center;
     align-items: center;
     width: 100vw;
- 
   }
+
   .container-3 input#search{
     width: 300px;
     height: 50px;
@@ -89,23 +117,20 @@
   .table-container-titule {
     font-family: 'KG Life is Messy', sans-serif;
     justify-content: center;
-    align-items: center;
-    
+    align-items: center;    
+    background-color: #817c77;
   }
   
   .table-container-titule table {
     text-align: justify;
     width: 100%; /* Adjust this value to change the width of the table */
+    
   }
 
   .table-container-titule td, .table-container-titule th {
     padding: 10px;
     text-align: center;
-  }
-
-  table {
-    display: block;
-    overflow-y: auto; 
+    background-color: #817c77;
   }
 
   .table-container-body {
@@ -114,6 +139,7 @@
     padding-top: 20px;
     width: 100%;
     border-spacing: 10px;
+    overflow-y: scroll;
   }
   .table-container-body table {
     text-align: justify;
@@ -127,7 +153,6 @@
     width: 100px;
     text-align: center;
   }
-
 
   thead {
     font-size: 1.3em; 
@@ -163,7 +188,6 @@ label {
     color: #8cbc54;
 }
 
-
 .button-CheckIn {
   border: 2px solid red;
   background-color: red;
@@ -184,7 +208,12 @@ label {
 .button-CheckIn.not-checked-in {
   background-color: red;
   color: white;
+}
 
+.table-wrapper table thead th,
+.table-wrapper table tbody td {
+  border: 1px solid #000;
+  background-color: #FFF;
 }
 
 .table-scroll {
@@ -193,6 +222,7 @@ label {
   width:100%;
   margin: auto;
   display:table;
+  height: 300px;
 }
 .table-wrap {
   width: 100%;
@@ -204,7 +234,7 @@ label {
 .table-wrap.fixedON,
 .table-wrap.fixedON table,
 .faux-table table {
-  height: 300px;/* match heights*/
+  height: 300px; 
 }
 .table-scroll table {
   width: 100%;
