@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { AfterViewInit } from '@angular/core';
 import { Chart, DoughnutController, ArcElement, CategoryScale, Legend, Tooltip } from 'chart.js';
 import { Label } from 'ag-charts-community/dist/types/src/integrated-charts-scene';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
 // Registering necessary controllers for Chart.js
 Chart.register(DoughnutController, ArcElement, CategoryScale, Legend, Tooltip);
@@ -37,35 +39,35 @@ export class ViewMetricsComponent implements AfterViewInit {
   }
 
   // Method to update the chart
-  updateChart(){
+  updateChart() {
     // Get all participants
     this.userService.getAllParticipants().subscribe(data => {
-        const totalParticipants = data.length; // Total participants
-        const checkedInCount = data.filter(participant => participant.CheckIn === 1).length; // Count of checked-in participants
+      const totalParticipants = data.length; // Total participants
+      const checkedInCount = data.filter(participant => participant.CheckIn === 1).length; // Count of checked-in participants
 
-        // Get the canvas element and its 2D rendering context
-        let canvas = document.getElementById('checkin') as HTMLCanvasElement;
-        let ctx = canvas.getContext('2d');
-        if (ctx !== null) {
+      // Get the canvas element and its 2D rendering context
+      let canvas = document.getElementById('checkin') as HTMLCanvasElement;
+      let ctx = canvas.getContext('2d');
+      if (ctx !== null) {
         // Create the doughnut chart
         var myChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Register', 'Register and Check In'], // Labels for the data
-                datasets: [{
-                    data: [totalParticipants, checkedInCount], // Data for the chart
-                    backgroundColor: ['#36a2eb', '#ff6384'] // Background colors for the data
-                }]
-            },
-            options: {
-                responsive: true, // The chart is responsive
-                maintainAspectRatio: false // Does not maintain aspect ratio
-            }
+          type: 'doughnut',
+          data: {
+            labels: ['Register', 'Register and Check In'], // Labels for the data
+            datasets: [{
+              data: [totalParticipants, checkedInCount], // Data for the chart
+              backgroundColor: ['#36a2eb', '#ff6384'] // Background colors for the data
+            }]
+          },
+          options: {
+            responsive: true, // The chart is responsive
+            maintainAspectRatio: false // Does not maintain aspect ratio
+          }
         });
-       
+
       } else {
         console.log('ctx is null'); // Error message if the 2D rendering context is not available
-     
+
       }
 
     });
@@ -97,10 +99,10 @@ export class ViewMetricsComponent implements AfterViewInit {
             datasets: [{
               data: Object.values(this.participantCountriesCount), // Data for the chart
               backgroundColor: ['#ff6680', '#ff7791', '#ff8fbd', '#ff8282',
-               '#ff9d6b', '#ffae5d', '#ffbf4f', '#b1ffb1', '#7effc5', '#6bb0cc',
-               '#6eb5cf', '#7cc4e9', '#81e981', '#b0d9ff', '#9797c3', '#c6c6ff',
-               '#ffa566', '#ffaf75', '#dcdcdc'
-               ] // Background colors for the data
+                '#ff9d6b', '#ffae5d', '#ffbf4f', '#b1ffb1', '#7effc5', '#6bb0cc',
+                '#6eb5cf', '#7cc4e9', '#81e981', '#b0d9ff', '#9797c3', '#c6c6ff',
+                '#ffa566', '#ffaf75', '#dcdcdc'
+              ] // Background colors for the data
             }]
           },
           options: {
@@ -141,9 +143,9 @@ export class ViewMetricsComponent implements AfterViewInit {
             datasets: [{
               data: Object.values(participantStatusCount), // Data for the chart
               backgroundColor: ['#34495e', '#2c3e50', '#7f8c8d', '#2ecc71',
-               '#3498db', '#16a085', '#e74c3c', '#d35400', '#f39c12', '#c0392b'
+                '#3498db', '#16a085', '#e74c3c', '#d35400', '#f39c12', '#c0392b'
 
-               ] // Background colors for the data
+              ] // Background colors for the data
             }]
           },
           options: {
@@ -162,5 +164,49 @@ export class ViewMetricsComponent implements AfterViewInit {
     this.router.navigateByUrl('/auth/dashboard');
     // this.router.navigate(['/auth/dashboard']); // Redirige a '/auth/dashboard'
   }
-  
+
+  exportPdf() {
+    let pdf = new jsPDF('p', 'mm', 'a4'); 
+    let ids = ['checkin', 'country', 'status']; 
+
+
+    let img = new Image();
+    img.src = 'assets/images/SGItransparent.png';
+    img.onload = function () {
+     
+      let canvas = document.createElement('canvas');
+      let scale = 3;
+      canvas.width = img.width * scale;
+      canvas.height = img.height * scale;
+      let ctx = canvas.getContext('2d');
+      if (ctx) { 
+        ctx.drawImage(img, 0, 0, img.width, img.height);
+        let logo = canvas.toDataURL('image/png');
+        pdf.addImage(logo, 'PNG', 120, 40, 180, 180);
+      }
+
+      pdf.setFontSize(22);
+      pdf.text('Makeathon 2024 Statistics: ', 105, 30, { align: 'center' });
+
+      let promises = ids.map((id, index) => {
+        let data = document.getElementById(id);
+        if (data) { // Comprueba si data es null
+          return html2canvas(data, { scale: 2 }) // Aumenta la escala para una mayor resolución
+            .then(canvas => {
+              let imgWidth = 100;
+              let imgHeight = canvas.height * imgWidth / canvas.width;
+              let position = index * imgHeight + 50; // ajusta la posición para cada gráfica, añade 50 para dejar espacio para el logo y el título
+
+              const contentDataURL = canvas.toDataURL('image/png')
+              pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+            });
+        } else {
+          return Promise.resolve(); // Devuelve una promesa resuelta cuando data es null
+        }
+      });
+
+      Promise.all(promises).then(() => pdf.save('MetricMakeathon2024.pdf'));
+    };
+  }
+
 }
