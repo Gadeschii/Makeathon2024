@@ -70,7 +70,6 @@ export class BodyUserListComponent implements OnInit {
 
   }
 
-
   // Method to get all participants
   getAllParticipants() {
     this.userService.getAllParticipants().subscribe(data => {
@@ -87,12 +86,9 @@ export class BodyUserListComponent implements OnInit {
         'Mobile Number': participant['Mobile Number'],
         'T-Shirt Size': participant['T-Shirt Size'],
         CheckIn: participant.CheckIn
-
       })).slice(0, this.totalParticipants); //take the totalParticipants value from the input field
       this.filteredParticipants = this.participants;
       this.updateParticipantCounts();
-
-      // Update the totalParticipants variable
       this.totalParticipants = this.participants.length;
     });
   }
@@ -142,7 +138,6 @@ export class BodyUserListComponent implements OnInit {
 
   private _filterParticipants(value: string): Participant[] {
     const filterValue = value.toLowerCase();
-
     return this.participants.filter(participant =>
       (participant['First Name'] && participant['First Name'].toLowerCase().includes(filterValue)) ||
       (participant['E-Mail'] && participant['E-Mail'].toLowerCase().includes(filterValue)) ||

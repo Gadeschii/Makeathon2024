@@ -1,40 +1,20 @@
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-<!-- <div class="container text-center">
-  <div class= "content">
-    <nav>
-      <button class="button" [routerLink]="['/auth/addparticipant']">Add Participant</button>    
-      <button class="button" [routerLink]="['/auth/exportlist']">Export List</button>
-      <button class="button" [routerLink]="['/auth/viewmetrics']">View Metrics</button>
-      <span>{{countCheckIn1}} / {{totalParticipants}} </span>
-    </nav>
-  </div>  
-</div> -->
-
-<div class="box">
-  <p>&nbsp;&nbsp;&nbsp;</p>
-  <div class="container-3">
-    <input type="search" id="search" [formControl]="searchControl" placeholder="Search...">
-    <p>&nbsp;&nbsp;&nbsp;</p>
-    <p>&nbsp;&nbsp;&nbsp;</p>
-    <p>&nbsp;&nbsp;&nbsp;</p>
-    <p>&nbsp;&nbsp;&nbsp;</p>
-    <p>&nbsp;&nbsp;&nbsp;</p>
-    <nav>
-      <button class="button" [routerLink]="['/auth/addparticipant']">Add Participant</button>    
-      <button class="button" [routerLink]="['/auth/exportlist']">Export List</button>
-      <button class="button" [routerLink]="['/auth/viewmetrics']">View Metrics</button>
-      <span>{{countCheckIn1}} / {{totalParticipants}} </span>
-    </nav>
-  </div>
-  <div>
-  </div>
+<p>&nbsp;&nbsp;&nbsp;</p>
+<div class="container-3">
+  <input type="search" id="search" [formControl]="searchControl" placeholder="Search...">
+  <button class="button" [routerLink]="['/auth/addparticipant']">Add Participant</button>
+  <button class="button" [routerLink]="['/auth/exportlist']">Export List</button>
+  <button class="button" [routerLink]="['/auth/viewmetrics']">View Metrics</button>
+  <span>{{countCheckIn1}} / {{totalParticipants}} </span>
 </div>
-  <div id="table-scroll" class="table-scroll">
-    <div id="table-wrap" class="table-wrap">
+
+<div id="table-scroll" class="table-scroll">
+  <div id="table-wrap" class="table-wrap">
+    <div class="table-container">
       <table id="main-table" class="main-table">
-        <thead class ="table-container-titule">
+        <caption>End participants</caption>
+        <thead class="table-container-titule">
           <tr>
             <th class="column-salutation" scope="col">Salutation</th>
             <th class="column-first-name" scope="col">First Name</th>
@@ -48,33 +28,27 @@
             <th class="column-tshirt-size" scope="col">T-Shirt Size</th>
             <th class="column-checkin" scope="col">CheckIn</th>
           </tr>
-        </thead> 
-          <tbody class = "table-container-body" >
-              <tr *ngFor="let participant of filteredParticipants ">
-                <td class="column-salutation" style="padding-top: 40px"> {{participant.Salutation}}</td>
-                <td class="column-first-name" style="padding-top: 40px"> {{ participant['First Name'] }}</td>
-                <td class="column-last-name" style="padding-top: 40px"> {{ participant['Last Name'] }}</td>
-                <td class="column-age" style="padding-top: 40px"> {{participant.Age}}</td>
-                <td class="column-email" style="padding-top: 40px"> {{ participant['E-Mail'] }}</td>
-                <td class="column-country" style="padding-top: 40px"> {{participant.Country}}</td>
-                <td class="column-mobile-number" style="padding-top: 40px"> {{ participant['Mobile Number'] }}</td>
-                <td class="column-category" style="padding-top: 40px"> {{participant.Category}}</td>
-                <td class="column-status" style="padding-top: 40px"> {{participant.Status}}</td>
-                <td class="column-tshirt-size" style="padding-top: 40px"> {{ participant['T-Shirt Size'] }}</td>
-                <td>
-                  <button class="button-CheckIn" 
-                    [class.checked-in]="participant.CheckIn === 1" 
-                    [class.not-checked-in]="participant.CheckIn === 0"
-                    (click)="updateParticipantCheckIn(participant)">
-                    {{ participant.CheckIn === 1 ? 'Checked In' : 'Not Checked In' }}
-                  </button>
-              </tr>
-          </tbody>
+        </thead>
+        <tbody class="table-container-body">
+          <tr *ngFor="let participant of filteredParticipants ">
+            <td class="column-salutation" style="padding-top: 40px"> {{participant.Salutation}}</td>
+            <td class="column-first-name" style="padding-top: 40px"> {{ participant['First Name'] }}</td>
+            <td class="column-last-name" style="padding-top: 40px"> {{ participant['Last Name'] }}</td>
+            <td class="column-age" style="padding-top: 40px"> {{participant.Age}}</td>
+            <td class="column-email" style="padding-top: 40px"> {{ participant['E-Mail'] }}</td>
+            <td class="column-country" style="padding-top: 40px"> {{participant.Country}}</td>
+            <td class="column-mobile-number" style="padding-top: 40px"> {{ participant['Mobile Number'] }}</td>
+            <td class="column-category" style="padding-top: 40px"> {{participant.Category}}</td>
+            <td class="column-status" style="padding-top: 40px"> {{participant.Status}}</td>
+            <td class="column-tshirt-size" style="padding-top: 40px"> {{ participant['T-Shirt Size'] }}</td>
+            <td>
+              <button class="button-CheckIn" [class.checked-in]="participant.CheckIn === 1"
+                [class.not-checked-in]="participant.CheckIn === 0" (click)="updateParticipantCheckIn(participant)">
+                {{ participant.CheckIn === 1 ? 'Checked In' : 'Not Checked In' }}
+              </button>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
-
-
-
-
-
+</div>
