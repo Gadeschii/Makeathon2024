@@ -93,6 +93,10 @@ export class BodyUserListComponent implements OnInit {
     });
   }
 
+  exportToExcel() {
+    this.userService.exportToExcel();
+  }
+
   getTotalParticipants() {
     this.userService.getAllParticipants().subscribe(data => {
       this.participantCount = data.length;

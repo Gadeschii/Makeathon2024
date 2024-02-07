@@ -5,6 +5,7 @@ import { IUser } from '../models/user';
 import { IJwtResponse } from '../models/jwt.response';
 import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
+import * as XLSX from 'xlsx';
 
 
 @Injectable({
@@ -76,6 +77,15 @@ export class UserService {
 
   getAllParticipants(): Observable<any[]> {
     return this.httpClient.get<any[]>(`${this.apiUrl}/participants`);
+  }
+
+  exportToExcel() {
+    this.getAllParticipants().subscribe(participants => {
+      const worksheet = XLSX.utils.json_to_sheet(participants);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Participants');
+      XLSX.writeFile(workbook, 'participants.xlsx');
+    });
   }
 
 
