@@ -173,33 +173,6 @@ export class BodyUserListComponent implements OnInit {
     this.totalParticipants = this.participants.length;
   }
 
-  // // Method to create a new user
-  // createUser(name: string, password: string) {
-  //   // Make a POST request to the API with the user data and subscribe to the response
-  //   this.http.post('http://localhost:3000/users/create', { name, password }).subscribe(data => {
-  //     // Log the data returned by the API to the console
-  //     console.log(data);
-  //   });
-  // }
-
-  // // Method to update an existing user
-  // updateUser(id: string, name: string, password: string) {
-  //   // Make a PUT request to the API with the user ID and new data and subscribe to the response
-  //   this.http.put(`http://localhost:3000/users/update${id}`, { name, password }).subscribe(data => {
-  //     // Log the data returned by the API to the console
-  //     console.log(data);
-  //   });
-  // }
-
-  // // Method to delete a user
-  // deleteUser(id: string) {
-  //   // Make a DELETE request to the API with the user ID and subscribe to the response
-  //   this.http.delete(`http://localhost:3000/users${id}`).subscribe(data => {
-  //     // Log the data returned by the API to the console
-  //     console.log(data);
-  //   });
-  // }
-
 }
 
 export class BodyUserListModule {

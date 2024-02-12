@@ -17,7 +17,6 @@ const routes: Routes = [
     { path: 'auth/header', component: HeaderComponent },
     { path: 'auth/body', component: BodyUserListComponent },
     { path: 'auth/dashboard', component: DashboardComponent, canActivate: [AuthGuardService] },
- //   { path: 'auth/dashboard', component: DashboardComponent },
     { path: 'auth/viewmetrics', component: ViewMetricsComponent },
     { path: 'auth/addparticipant', component: AddParticipantComponent },
 
