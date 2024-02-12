@@ -6,6 +6,8 @@ import { IJwtResponse } from '../models/jwt.response';
 import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 import * as XLSX from 'xlsx';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+
 
 
 @Injectable({
@@ -66,10 +68,11 @@ export class UserService {
     return this.token;
   }
 
+  isAuthenticated(): boolean {
+    const token = this.getToken();
+    return !!token;
+  }
 
-  // getUser(): Observable<IUser> {
-  //   return this.httpClient.get<IUser>(`${this.AUTH_SERVER}/users`);
-  // }
   getAllUsers(): Observable<IUser[]> {
     return this.httpClient.get<IUser[]>(`${this.AUTH_SERVER}/users`);
   }
@@ -100,6 +103,5 @@ export class UserService {
   getParticipantCountriesCount(): Observable<any[]> {
     return this.httpClient.get<any[]>(`${this.apiUrl}/participants`);
   }
-
 
 }

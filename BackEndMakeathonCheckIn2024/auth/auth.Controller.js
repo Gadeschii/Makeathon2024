@@ -252,8 +252,8 @@ exports.getUser = (req, res, next) => {
         if (!user) return res.status(404).send('User not found');
         res.status(200).send(user);
     });
-    
 }
+
 // Function to get a user by name
 exports.getUserByName = (req, res, next) => {
     ITQParticipants.findOne({ name: req.params.name }, (err, user) => {

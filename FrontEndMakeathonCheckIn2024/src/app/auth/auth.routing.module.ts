@@ -8,8 +8,7 @@ import { BodyUserListComponent } from '../body-user-list/body-user-list.componen
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { AddParticipantComponent } from '../add-participant/add-participant.component';
 import { ViewMetricsComponent } from '../view-metrics/view-metrics.component';
-
-
+import { AuthGuardService } from '../Service/auth-guard.service';
 
 const routes: Routes = [
 
@@ -17,7 +16,8 @@ const routes: Routes = [
     { path: 'auth/register', component: RegisterComponent },
     { path: 'auth/header', component: HeaderComponent },
     { path: 'auth/body', component: BodyUserListComponent },
-    { path: 'auth/dashboard', component: DashboardComponent },
+    { path: 'auth/dashboard', component: DashboardComponent, canActivate: [AuthGuardService] },
+ //   { path: 'auth/dashboard', component: DashboardComponent },
     { path: 'auth/viewmetrics', component: ViewMetricsComponent },
     { path: 'auth/addparticipant', component: AddParticipantComponent },
 
