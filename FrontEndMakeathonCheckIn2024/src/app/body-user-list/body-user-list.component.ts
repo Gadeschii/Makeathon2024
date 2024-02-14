@@ -44,8 +44,8 @@ export class BodyUserListComponent implements OnInit {
   participants: any[] = []; // Array to store the users
   filteredUsers: any[] = []; // Array to store the filtered users
   searchControl = new FormControl();
-  // apiUrl = 'https://gadeschii.github.io/Makeathon2024/';
-  apiUrl = 'http://localhost:3000';
+  apiUrl = 'https://gadeschii.github.io/Makeathon2024/';
+  // apiUrl = 'http://localhost:3000';
   scrollInterval: number = 0;
 
   checkedInParticipantsCount: number = 0;
