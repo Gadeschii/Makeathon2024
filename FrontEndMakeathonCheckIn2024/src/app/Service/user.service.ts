@@ -15,7 +15,8 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 // UserService class
 export class UserService {
   // Define the API URL
-  readonly apiUrl = 'http://localhost:3000';
+  //readonly apiUrl = 'http://localhost:3000';
+  readonly apiUrl = 'http://10.10.217.198:3000';
   // AUTH_SERVER: string = this.apiUrl;
   // readonly apiUrl = 'https://gadeschii.github.io/Makeathon2024/';
   readonly ServerIP = '10.10.217.198';
@@ -43,7 +44,7 @@ export class UserService {
 
   // Method to log in a user
   login(user: IUser): Observable<IJwtResponse> {
-    return this.httpClient.post<IJwtResponse>(`${this.AUTH_SERVER}/login`,
+    return this.httpClient.post<IJwtResponse>(`${this.apiUrl}/login`, //AUTH_SERVER testing
       user).pipe(tap(
         (res: IJwtResponse) => {
           if (res) {
