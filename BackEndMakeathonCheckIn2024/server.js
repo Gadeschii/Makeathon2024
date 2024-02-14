@@ -7,6 +7,13 @@ const express = require('express');
 const properties = require('./config/properties.js');
 const DB =  require('./config/db.js');
 
+
+const fs = require('fs');
+const https = require('https');
+const express = require('express');
+const host = '10.10.217.198';
+
+
 // Initialize the database
 DB();
 
@@ -20,14 +27,23 @@ const bodyParser = require('body-parser');
 const bodyParserJSON = bodyParser.json();
 const bodyParserURLEncoded = bodyParser.urlencoded({extended:true});
 
+
+app.get('/', (req, res) => {
+  res.send('Hello HTTPS!');
+});
+https.createServer({
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem')
+}, app)
+
 // Use body-parser middleware to parse JSON and URL encoded data
 app.use(bodyParserJSON);
 app.use(bodyParserURLEncoded);
 
 // Use CORS middleware to handle cross-origin requests
 var corsOptions = {
-    origin: ['http://localhost:4200', 'http://localhost:3000'], // Reemplaza estos con tus dominios
-    optionsSuccessStatus: 200 // Algunos navegadores antiguos (IE11, varios SmartTVs) fallan con 204
+  origin: [`http://${host}:4200`, `http://${host}:3000`], 
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   }
 app.use(cors(corsOptions));
 
