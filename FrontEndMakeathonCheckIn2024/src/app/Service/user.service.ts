@@ -15,9 +15,9 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 // UserService class
 export class UserService {
   // Define the API URL
-  // readonly apiUrl = 'http://localhost:3000';
-  //  AUTH_SERVER: string = this.apiUrl;
-  readonly apiUrl = 'https://gadeschii.github.io/Makeathon2024/';
+  readonly apiUrl = 'http://localhost:3000';
+  // AUTH_SERVER: string = this.apiUrl;
+  // readonly apiUrl = 'https://gadeschii.github.io/Makeathon2024/';
   readonly ServerIP = '10.10.217.198';
   readonly AUTH_SERVER = `https://${this.ServerIP}:3000`;
   // Create a new BehaviorSubject that will hold a boolean value
