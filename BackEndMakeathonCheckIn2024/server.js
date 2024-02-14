@@ -10,7 +10,6 @@ const DB =  require('./config/db.js');
 
 const fs = require('fs');
 const https = require('https');
-const express = require('express');
 const host = '10.10.217.198';
 
 
@@ -42,7 +41,7 @@ app.use(bodyParserURLEncoded);
 
 // Use CORS middleware to handle cross-origin requests
 var corsOptions = {
-  origin: [`http://${host}:4200`, `http://${host}:3000`], 
+  origin: [`https://${host}:4200`, `https://${host}:3000`], 
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   }
 app.use(cors(corsOptions));
