@@ -15,11 +15,11 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 // UserService class
 export class UserService {
   // Define the API URL
-  readonly apiUrl = 'http://localhost:3000';
-   AUTH_SERVER: string = this.apiUrl;
-  // readonly apiUrl = 'https://gadeschii.github.io/Makeathon2024/';
-  // readonly RaspberryPiIP = '10.10.217.150';
-  // readonly AUTH_SERVER = `http://${this.RaspberryPiIP}:3000`;
+  // readonly apiUrl = 'http://localhost:3000';
+  //  AUTH_SERVER: string = this.apiUrl;
+  readonly apiUrl = 'https://gadeschii.github.io/Makeathon2024/';
+  readonly RaspberryPiIP = '127.0.0.1';
+  readonly AUTH_SERVER = `http://${this.RaspberryPiIP}:3000`;
   // Create a new BehaviorSubject that will hold a boolean value
   authSubject = new BehaviorSubject(false);
   // Declare a private token variable
@@ -91,7 +91,7 @@ export class UserService {
   getAllParticipants(): Observable<any[]> {
     return this.httpClient.get<any[]>(`${this.apiUrl}/participants`);
   }
-  
+
   // Method to export participants to Excel
   exportToExcel() {
     this.getAllParticipants().subscribe(participants => {
