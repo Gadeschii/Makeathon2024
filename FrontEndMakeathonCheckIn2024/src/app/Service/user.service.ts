@@ -18,8 +18,8 @@ export class UserService {
   // readonly apiUrl = 'http://localhost:3000';
   //  AUTH_SERVER: string = this.apiUrl;
   readonly apiUrl = 'https://gadeschii.github.io/Makeathon2024/';
-  readonly RaspberryPiIP = '127.0.0.1';
-  readonly AUTH_SERVER = `http://${this.RaspberryPiIP}:3000`;
+  readonly ServerIP = '127.0.0.1';
+  readonly AUTH_SERVER = `http://${this.ServerIP}:3000`;
   // Create a new BehaviorSubject that will hold a boolean value
   authSubject = new BehaviorSubject(false);
   // Declare a private token variable
