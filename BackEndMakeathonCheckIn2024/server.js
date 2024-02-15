@@ -27,13 +27,14 @@ const bodyParser = require('body-parser');
 const bodyParserJSON = bodyParser.json();
 const bodyParserURLEncoded = bodyParser.urlencoded({extended:true});
 
-app.get('/', (req, res) => {
-  res.send('Hello HTTPS!');
-});
-https.createServer({
+const options = {
   key: fs.readFileSync('key.pem'),
   cert: fs.readFileSync('cert.pem')
-}, app)
+};
+
+https.createServer(options, app).listen(properties.PORT, () => {
+  console.log(`Server running on port ${properties.PORT}`);
+});
 
 // Use body-parser middleware to parse JSON and URL encoded data
 app.use(bodyParserJSON);
@@ -41,7 +42,7 @@ app.use(bodyParserURLEncoded);
 
 // Use CORS middleware to handle cross-origin requests
 var corsOptions = {
-  origin: [`https://${hostITQ}:4200`, `https://${hostITQ}:3000`], 
+  origin: [`https://${hostITQ}:4200`, `https://${host}:3000`], 
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   }
 app.use(cors(corsOptions));
@@ -61,4 +62,4 @@ router.get('/', (req, res) => {
 app.use(router);
 
 // Start the server on the specified port
-app.listen(properties.PORT, () => console.log(`Server running on port ${properties.PORT}`));
+//app.listen(properties.PORT, () => console.log(`Server running on port ${properties.PORT}`));
