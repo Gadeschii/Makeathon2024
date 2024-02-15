@@ -23,7 +23,7 @@ export class UserService {
   readonly ServerIP = '192.168.1.125'; 
   // readonly ServerIP = '10.10.217.198';
 
-  readonly AUTH_SERVER = `http://${this.ServerIP}:3000`;
+  readonly AUTH_SERVER = `https://${this.ServerIP}:3000`;
 
   // Create a new BehaviorSubject that will hold a boolean value
   authSubject = new BehaviorSubject(false);
