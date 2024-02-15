@@ -29,7 +29,9 @@ const bodyParserURLEncoded = bodyParser.urlencoded({extended:true});
 
 const options = {
   key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem')
+  cert: fs.readFileSync('cert.pem'),
+  passphrase: 'jjjj'
+
 };
 
 https.createServer(options, app).listen(properties.PORT, () => {
