@@ -16,16 +16,16 @@ export class UserService {
   // Define the API URL
   //readonly apiUrl = 'http://localhost:3000';
   // readonly apiUrl = 'http://10.10.217.198:3000';
-  //readonly apiUrl = 'https://192.168.1.125:3000';
-  readonly apiUrl = 'https://192.168.1.125:443';
+   readonly apiUrl = 'https://192.168.1.125:3000';
+  // readonly apiUrl = 'https://192.168.1.125:443';
 
   // AUTH_SERVER: string = this.apiUrl;
   // readonly apiUrl = 'https://gadeschii.github.io/Makeathon2024/';
   readonly ServerIP = '192.168.1.125'; 
   // readonly ServerIP = '10.10.217.198';
 
-  //readonly AUTH_SERVER = `https://${this.ServerIP}:3000`;
-  readonly AUTH_SERVER = `https://${this.ServerIP}:443`;
+  readonly AUTH_SERVER = `https://${this.ServerIP}:3000`;
+  
 
 
   // Create a new BehaviorSubject that will hold a boolean value
