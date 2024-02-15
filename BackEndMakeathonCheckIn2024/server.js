@@ -11,6 +11,7 @@ const DB =  require('./config/db.js');
 const fs = require('fs');
 const https = require('https');
 const host = '10.10.217.198';
+const hostITQ = '192.168.1.125';
 
 
 // Initialize the database
@@ -26,7 +27,6 @@ const bodyParser = require('body-parser');
 const bodyParserJSON = bodyParser.json();
 const bodyParserURLEncoded = bodyParser.urlencoded({extended:true});
 
-
 app.get('/', (req, res) => {
   res.send('Hello HTTPS!');
 });
@@ -41,7 +41,7 @@ app.use(bodyParserURLEncoded);
 
 // Use CORS middleware to handle cross-origin requests
 var corsOptions = {
-  origin: [`https://${host}:4200`, `https://${host}:3000`], 
+  origin: [`https://${hostITQ}:4200`, `https://${hostITQ}:3000`], 
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   }
 app.use(cors(corsOptions));

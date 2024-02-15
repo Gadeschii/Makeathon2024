@@ -8,7 +8,6 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import * as XLSX from 'xlsx';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -16,11 +15,16 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 export class UserService {
   // Define the API URL
   //readonly apiUrl = 'http://localhost:3000';
-  readonly apiUrl = 'http://10.10.217.198:3000';
+  // readonly apiUrl = 'http://10.10.217.198:3000';
+  readonly apiUrl = 'http://192.168.1.125:3000';
+
   // AUTH_SERVER: string = this.apiUrl;
   // readonly apiUrl = 'https://gadeschii.github.io/Makeathon2024/';
-  readonly ServerIP = '10.10.217.198';
+  readonly ServerIP = '192.168.1.125'; 
+  // readonly ServerIP = '10.10.217.198';
+
   readonly AUTH_SERVER = `https://${this.ServerIP}:3000`;
+  
   // Create a new BehaviorSubject that will hold a boolean value
   authSubject = new BehaviorSubject(false);
   // Declare a private token variable
@@ -82,12 +86,10 @@ export class UserService {
     const token = this.getToken();
     return !!token;
   }
-
  
   getAllUsers(): Observable<IUser[]> {
     return this.httpClient.get<IUser[]>(`${this.AUTH_SERVER}/users`);
   }
-
 
   getAllParticipants(): Observable<any[]> {
     return this.httpClient.get<any[]>(`${this.apiUrl}/participants`);
@@ -102,7 +104,6 @@ export class UserService {
       XLSX.writeFile(workbook, 'participants.xlsx');
     });
   }
-
 
   getTotalParticipants(): Observable<any[]> {
     return this.httpClient.get<any[]>(`${this.apiUrl}/participants`);
