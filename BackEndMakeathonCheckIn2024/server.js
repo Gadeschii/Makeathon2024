@@ -42,7 +42,7 @@ app.use(bodyParserURLEncoded);
 
 // Use CORS middleware to handle cross-origin requests
 var corsOptions = {
-  origin: [`https://${hostITQ}:4200`, `https://${host}:3000`], 
+  origin: [`https://${hostITQ}:4200`, `https://${hostITQ}:3000`], 
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   }
 app.use(cors(corsOptions));
