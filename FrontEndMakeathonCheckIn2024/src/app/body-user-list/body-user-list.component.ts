@@ -45,7 +45,8 @@ export class BodyUserListComponent implements OnInit {
   filteredUsers: any[] = []; // Array to store the filtered users
   searchControl = new FormControl();
   //apiUrl = 'https://gadeschii.github.io/Makeathon2024/';
-  apiUrl = 'https://192.168.1.125:3000';
+  //apiUrl = 'https://192.168.1.125:3000';
+  apiUrl = 'https://192.168.1.125:443';
   // apiUrl = 'http://localhost:3000';
   scrollInterval: number = 0;
 
