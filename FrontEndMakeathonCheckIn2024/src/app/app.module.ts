@@ -60,9 +60,7 @@ import { ViewMetricsComponent } from './view-metrics/view-metrics.component';
     RouterModule,
     MatSelectModule,
     ReactiveFormsModule,
-    AgChartsAngularModule,
-    FormsModule
-    
+    AgChartsAngularModule
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   //providers: [],
