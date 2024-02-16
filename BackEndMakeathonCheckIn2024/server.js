@@ -12,7 +12,6 @@ const fs = require('fs');
 const https = require('https');
 const host = '10.10.217.198';
 const hostITQ = '192.168.1.125';
-const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN;
 
 
 // Initialize the database
@@ -35,19 +34,19 @@ const options = {
 
 };
 
-https.createServer(options, app).listen(properties.PORT, '0.0.0.0', () => {
+https.createServer(options, app).listen(properties.PORT, () => {
   console.log(`Server running on port ${properties.PORT}`);
 });
+
 // Use body-parser middleware to parse JSON and URL encoded data
 app.use(bodyParserJSON);
 app.use(bodyParserURLEncoded);
 
 // Use CORS middleware to handle cross-origin requests
 var corsOptions = {
-  origin: [`https://${hostITQ}:4200`,
-   `https://${hostITQ}:3000`,
-   FRONTEND_ORIGIN], 
+  origin: [`https://${hostITQ}:4200`, `https://${hostITQ}:3000`], 
   // origin: [`https://${hostITQ}:4200`, `https://${hostITQ}:443`], 
+  
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   }
 app.use(cors(corsOptions));
