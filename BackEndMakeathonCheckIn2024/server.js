@@ -10,7 +10,7 @@ const DB =  require('./config/db.js');
 
 const fs = require('fs');
 const https = require('https');
-const host = '10.10.217.198';
+const localhost = 'localhost ';
 const hostITQ = '192.168.1.125';
 
 
@@ -27,22 +27,22 @@ const bodyParser = require('body-parser');
 const bodyParserJSON = bodyParser.json();
 const bodyParserURLEncoded = bodyParser.urlencoded({extended:true});
 
-const options = {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem'),
-  passphrase: 'jjjj'
-};
+// const options = {
+//   key: fs.readFileSync('key.pem'),
+//   cert: fs.readFileSync('cert.pem'),
+//   passphrase: 'jjjj'
+// };
 
-https.createServer(options, app).listen(properties.PORT, () => {
-  console.log(`Server running on port ${properties.PORT}`);
-});
+// https.createServer(options, app).listen(properties.PORT, () => {
+//   console.log(`Server running on port ${properties.PORT}`);
+// });
 
 // Use body-parser middleware to parse JSON and URL encoded data
 app.use(bodyParserJSON);
 app.use(bodyParserURLEncoded);
 
 var corsOptions = {
-  origin: [`https://${hostITQ}:4200`, `https://${hostITQ}:3000`], 
+  origin: [`https://${localhost}:4200`, `https://${localhost}:3000`], 
   // origin: [`https://${hostITQ}:4200`, `https://${hostITQ}:443`], 
   
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
