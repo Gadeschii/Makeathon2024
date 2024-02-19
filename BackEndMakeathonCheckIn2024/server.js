@@ -31,7 +31,6 @@ const options = {
   key: fs.readFileSync('key.pem'),
   cert: fs.readFileSync('cert.pem'),
   passphrase: 'jjjj'
-
 };
 
 https.createServer(options, app).listen(properties.PORT, () => {
@@ -42,7 +41,6 @@ https.createServer(options, app).listen(properties.PORT, () => {
 app.use(bodyParserJSON);
 app.use(bodyParserURLEncoded);
 
-// Use CORS middleware to handle cross-origin requests
 var corsOptions = {
   origin: [`https://${hostITQ}:4200`, `https://${hostITQ}:3000`], 
   // origin: [`https://${hostITQ}:4200`, `https://${hostITQ}:443`], 

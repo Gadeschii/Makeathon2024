@@ -60,12 +60,7 @@ import { ViewMetricsComponent } from './view-metrics/view-metrics.component';
     RouterModule,
     MatSelectModule,
     ReactiveFormsModule,
-<<<<<<< HEAD
     AgChartsAngularModule
-=======
-    AgChartsAngularModule,
-    
->>>>>>> parent of 018b5e7 (solver some from error and upgrade the angular cors)
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   //providers: [],
