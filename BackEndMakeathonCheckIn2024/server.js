@@ -8,8 +8,8 @@ const properties = require('./config/properties.js');
 const DB =  require('./config/db.js');
 
 
-const fs = require('fs');
-const https = require('https');
+// const fs = require('fs');
+// const https = require('https');
 const localhost = 'localhost ';
 const hostITQ = '192.168.1.125';
 
@@ -42,8 +42,7 @@ app.use(bodyParserJSON);
 app.use(bodyParserURLEncoded);
 
 var corsOptions = {
-  origin: [`https://${localhost}:4200`, `https://${localhost}:3000`], 
-  // origin: [`https://${hostITQ}:4200`, `https://${hostITQ}:443`], 
+  origin: [`http://${localhost}:4200`, 'http://localhost:3000'], 
   
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   }
