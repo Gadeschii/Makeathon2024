@@ -16,6 +16,7 @@ export class UserService {
   // Define the API URL
   // readonly apiUrl = 'http://localhost:3000';
   readonly apiUrl = '/api'; //for AWS
+  
   // readonly apiUrl = 'http://10.10.217.198:3000';
   // readonly apiUrl = 'https://192.168.1.125:3000';
   //  readonly apiUrl = 'https://192.168.1.125:443';
