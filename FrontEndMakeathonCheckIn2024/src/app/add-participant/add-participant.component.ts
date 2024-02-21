@@ -18,6 +18,7 @@ export class AddParticipantComponent {
   mobileNumber: string = ''; 
   // apiUrl = 'http://localhost:3000';
   apiUrl = '/api'; //for AWS
+  
   // apiUrl = 'http://localhost:443';
 
   constructor(
