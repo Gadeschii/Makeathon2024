@@ -12,6 +12,7 @@ const DB =  require('./config/db.js');
 // const https = require('https');
 const localhost = 'localhost ';
 const hostITQ = '192.168.1.125';
+const AWS = 'http://ec2-13-40-16-46.eu-west-2.compute.amazonaws.com';
 
 
 // Initialize the database
@@ -37,7 +38,7 @@ const bodyParserURLEncoded = bodyParser.urlencoded({extended:true});
 //   console.log(`Server running on port ${properties.PORT}`);
 // });
 
-// Use body-parser middleware to parse JSON and URL encoded data
+//Use body-parser middleware to parse JSON and URL encoded data
 app.use(bodyParserJSON);
 app.use(bodyParserURLEncoded);
 
@@ -46,6 +47,7 @@ var corsOptions = {
   
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   }
+
 app.use(cors(corsOptions));
 
 // Use the router for routes starting with '/api'
@@ -63,4 +65,4 @@ router.get('/', (req, res) => {
 app.use(router);
 
 // Start the server on the specified port
-//app.listen(properties.PORT, () => console.log(`Server running on port ${properties.PORT}`));
+app.listen(properties.PORT, () => console.log(`Server running on port ${properties.PORT}`));
