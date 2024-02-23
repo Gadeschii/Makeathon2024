@@ -12,6 +12,7 @@ const app = require('express')();
 // Function to create a new user
 exports.registerUser = (req, res, next) => {
     console.log(req.body);//Testing
+    console.log('hola estoy en registerUser');//Testing
 
     // Check if user already exists
     ITQCredentials.findOne({ name: req.body.name })
@@ -48,19 +49,24 @@ exports.registerUser = (req, res, next) => {
                     })
                     .catch(err => {
                         // For any other errors, send a server error response
-                        return res.status(500).send('Server error');
+                        console.error('test');
+                        console.error(err);
+                        return res.status(500).send(`Server errorToken: ${err.message}`);
+                        
                     });
             }
         })
         .catch(err => {
             // If there is an error checking for the user, send a server error response
-            return res.status(500).send('Server error');
+            return res.status(500).send(`Server errorMongoDB: ${err.message}`);
         });
 }
 
 // Function to log in a user
 exports.loginUser = (req, res, next) => {
     // Create a user object with the request data
+    app.headers('Access-Control-Allow-Origin', '*');
+    express();
     const userData = {
         name: req.body.name,
         password: req.body.password
@@ -149,6 +155,10 @@ exports.updateCheckIn = (req, res, next) => {
         });
 }
 
+//testing
+exports.hola = (req, res, next) => {
+    res.send('Hola');
+}
 
 exports.addParticipant = (req, res, next) => {
     // Create a new participant object with the request data
@@ -170,55 +180,9 @@ exports.addParticipant = (req, res, next) => {
         .catch(err => {
             // If there was an error saving the participant, send a server error response
             console.error(err);
-            return res.status(500).send('Server error');
+            return res.status(500).send('Server error AddParticipant');
         });
 }
-
-
-
-// // Function addParticipant
-// exports.addParticipant = (req, res, next) => {
-//     // Check if a participant with the same first name, last name, email, and mobile number already exists
-//     ITQParticipants.findOne({
-//         'First Name': req.body.firstName,
-//         'Last Name': req.body.lastName,
-//         'E-Mail': req.body.email,
-//         'Mobile Number': req.body.mobileNumber
-//     })
-//     .then(existingParticipant => {
-//         if (existingParticipant) {
-//             // If a participant with the same details already exists, send an error response
-//             return res.status(400).send('Participant already exists');
-//         } else {
-//             // If no such participant exists, create a new participant object with the request data
-//             const newParticipant = new ITQParticipants({
-//                 Salutation: req.body.salutation,
-//                 'First Name': req.body.firstName,
-//                 'Last Name': req.body.lastName,
-//                 'E-mail': req.body.email,
-//                 'Mobile Number': req.body.mobileNumber,
-//                 CheckIn: 1
-//             });
-//             // Save the new participant in the database
-//             newParticipant.save()
-//                 .then(participant => {
-//                     res.status(201).send(participant);
-//                     // If the participant is created successfully, send a success response
-//                     //res.status(201).send('Participant added successfully');
-//                 })
-//                 .catch(err => {
-//                     // If there was an error saving the participant, send a server error response
-//                     console.error(err);
-//                     return res.status(500).send('Server error');
-//                 });
-//         }
-//     })
-//     .catch(err => {
-//         // If there was an error checking for the existing participant, send a server error response
-//         console.error(err);
-//         return res.status(500).send('Server error');
-//     });
-// }
 
 // Function to get all users
 exports.getAllUsers = (req, res, next) => {
@@ -289,3 +253,49 @@ exports.deleteUser = (req, res, next) => {
         res.status(200).send('User deleted');
     });
 }
+
+
+
+// // Function addParticipant
+// exports.addParticipant = (req, res, next) => {
+//     // Check if a participant with the same first name, last name, email, and mobile number already exists
+//     ITQParticipants.findOne({
+//         'First Name': req.body.firstName,
+//         'Last Name': req.body.lastName,
+//         'E-Mail': req.body.email,
+//         'Mobile Number': req.body.mobileNumber
+//     })
+//     .then(existingParticipant => {
+//         if (existingParticipant) {
+//             // If a participant with the same details already exists, send an error response
+//             return res.status(400).send('Participant already exists');
+//         } else {
+//             // If no such participant exists, create a new participant object with the request data
+//             const newParticipant = new ITQParticipants({
+//                 Salutation: req.body.salutation,
+//                 'First Name': req.body.firstName,
+//                 'Last Name': req.body.lastName,
+//                 'E-mail': req.body.email,
+//                 'Mobile Number': req.body.mobileNumber,
+//                 CheckIn: 1
+//             });
+//             // Save the new participant in the database
+//             newParticipant.save()
+//                 .then(participant => {
+//                     res.status(201).send(participant);
+//                     // If the participant is created successfully, send a success response
+//                     //res.status(201).send('Participant added successfully');
+//                 })
+//                 .catch(err => {
+//                     // If there was an error saving the participant, send a server error response
+//                     console.error(err);
+//                     return res.status(500).send('Server error');
+//                 });
+//         }
+//     })
+//     .catch(err => {
+//         // If there was an error checking for the existing participant, send a server error response
+//         console.error(err);
+//         return res.status(500).send('Server error');
+//     });
+// }

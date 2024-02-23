@@ -51,14 +51,18 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 // Use the router for routes starting with '/api'
-app.use('/api', router);  
+app.use('/auth', router);  
 
 // Import routes from auth.Routers
 authRoutes(router);
 
 // Define a route for the root path
 router.get('/', (req, res) => {
-    res.send("Hello World");
+    res.send("Hello World:)");
+});
+
+router.get('/hola', (req, res) => {
+  res.send("hola World");
 });
 
 // Use the router for all routes

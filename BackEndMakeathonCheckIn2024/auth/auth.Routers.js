@@ -12,6 +12,10 @@ module.exports = (router) => {
     // Add more routes as needed
     router.get('/users', UsersController.getAllUsers);
     router.get('/users/:id', UsersController.getUser);
+    //testing
+    router.get('/holaUser', UsersController.getAllUsers);
+    router.get('/hola', UsersController.hola);
+
     
   //  router.post('/users/create', UsersController.registerUser);
     router.put('/users/:id', UsersController.updateUser);
