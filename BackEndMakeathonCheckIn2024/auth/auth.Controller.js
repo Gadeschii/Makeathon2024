@@ -65,8 +65,7 @@ exports.registerUser = (req, res, next) => {
 // Function to log in a user
 exports.loginUser = (req, res, next) => {
     // Create a user object with the request data
-    app.headers('Access-Control-Allow-Origin', '*');
-    express();
+  
     const userData = {
         name: req.body.name,
         password: req.body.password
