@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
 
   // Method to handle login
   onLogin(form: any): void {
+    this.authService.gethola();
     console.log(form.value); // Printing the form value on console 
     // Calling the login method of authService and passing the user object to it
     this.authService.login(form.value).subscribe({

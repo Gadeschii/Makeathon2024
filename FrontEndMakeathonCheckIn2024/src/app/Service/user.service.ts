@@ -14,8 +14,8 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 // UserService class
 export class UserService {
   // Define the API URL
-  readonly apiUrl = 'http://localhost:3000';
-  // readonly apiUrl = '/auth'; //for AWS
+  // readonly apiUrl = 'http://localhost:3000';
+  readonly apiUrl = '/auth'; //for AWS
   
   // readonly apiUrl = 'http://10.10.217.198:3000';
   // readonly apiUrl = 'https://192.168.1.125:3000';
@@ -63,6 +63,10 @@ export class UserService {
           }
         }
       ));
+  }
+
+  gethola(){
+    this.httpClient.get(`${this.AUTH_SERVER}/hola`).subscribe(value => console.log(value));
   }
 
   // Method to log out a user
