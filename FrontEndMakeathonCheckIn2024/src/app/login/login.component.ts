@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     // Calling the login method of authService and passing the user object to it
     this.authService.login(form.value).subscribe({
       next: res => {
-        this.router.navigateByUrl('/auth/dashboard');
+        this.router.navigateByUrl('/dashboard');
         // this.router.navigateByUrl('/dashboard');
       },
       error: err => {

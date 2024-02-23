@@ -50,8 +50,12 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 
-// Use the router for routes starting with '/api'
+// Use the router for routes starting with '/auth'
 app.use('/auth', router);  
+
+app.use('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/opt/FrontEnd/Makeathon2024/index.html'));
+});
 
 // Import routes from auth.Routers
 authRoutes(router);
