@@ -117,6 +117,7 @@ exports.updateCheckIn = (req, res, next) => {
     // Get the participant id from the request
     const id = req.params.id;
     const newCheckInStatus = req.body.CheckIn;
+    console.log(req.body.CheckIn); //Testing
 
     // Find the participant in the database and update their check-in status
     ITQParticipants.findById(id) 
@@ -150,6 +151,45 @@ exports.updateCheckIn = (req, res, next) => {
         });
 }
 
+exports.updateCertificate = (req, res, next) => {
+    // Get the participant id from the request
+    const id = req.params.id;
+    const newCertificateStatus = req.body.Certificate;
+    console.log(req.body.Certificate); //Testing
+
+    // Find the participant in the database and update their check-in status
+    ITQParticipants.findById(id)
+        .then(participant => {
+            console.log(id); //Testing
+            if (!participant) {
+                // If the participant was not found, send an error response
+                return res.status(404).send('Participant not found');
+            } else {
+                // Set the check-in status of the participant to the new status
+                participant.Certificate = newCertificateStatus;
+                // Save the updated participant
+                participant.save()
+                    .then(() => {
+                        // Send the updated participant
+                        res.send(participant.Certificate.toString());
+                        console.log(participant.Certificate); //Testing
+                    })
+
+                    .catch(err => {
+                        // Log the error for debugging
+                        console.error(err);
+                        // If there was an error saving the participant, send a server error response
+                        return res.status(500).send('Server errorCertificate1');
+                    });
+            }
+        })
+        .catch(err => {
+            // If there was an error finding the participant, send a server error response
+            return res.status(500).send('Server errorCertificate2');
+        });
+}
+
+
 exports.addParticipant = (req, res, next) => {
     // Create a new participant object with the request data
     const newParticipant = new ITQParticipants({
@@ -158,7 +198,8 @@ exports.addParticipant = (req, res, next) => {
         "Last Name": req.body['Last Name'],
         "E-mail": req.body['E-Mail'],
         "Mobile Number": req.body['Mobile Number'],
-        CheckIn: 1
+        CheckIn: 1,
+        Certificate: req.body.Certificate
     });
 
     // Save the new participant in the database

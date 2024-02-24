@@ -26,6 +26,9 @@ module.exports = (router) => {
     router.put('/participants/checkin/:id', UsersController.updateCheckIn);
     router.put('auth/participants/checkin/:id', UsersController.updateCheckIn);
 
+    router.put('/participants/certificate/:id', UsersController.updateCertificate);
+    router.put('auth/participants/certificate/:id', UsersController.updateCertificate);
+
     router.post('/auth/addparticipant', UsersController.addParticipant);
     router.post('/addparticipant', UsersController.addParticipant);
 }

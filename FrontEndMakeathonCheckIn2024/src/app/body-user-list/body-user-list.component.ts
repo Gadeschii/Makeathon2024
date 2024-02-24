@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from '../Service/user.service';
 import { FormControl } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
+
 
 
 import { Observable } from 'rxjs';
@@ -23,6 +25,7 @@ interface Participant {
   'Mobile Number': string;
   'T-Shirt Size': string;
   CheckIn: number;
+  Certificate: number;
 }
 
 @Component({
@@ -61,12 +64,19 @@ export class BodyUserListComponent implements OnInit {
   @ViewChild('participantList', { static: false }) participantList!: ElementRef;
 
   // Inject HttpClient into the component through the constructor
-  constructor(private http: HttpClient, private userService: UserService) { }
+  constructor(private http: HttpClient, private userService: UserService, private router: Router) { }
 
   // ngOnInit is a lifecycle hook that is called after Angular has initialized all data-bound properties of a directive.
   ngOnInit() {
 
+    if (this.userService.getToken()) {
+      this.router.navigate(['/auth/dashboard']);
+    } else {
+      this.router.navigate(['/login']);
+    }
+
     this.getAllParticipants(); // Call the method when the component is initialized
+
 
     this.searchControl.valueChanges
       .pipe(
@@ -92,7 +102,9 @@ export class BodyUserListComponent implements OnInit {
         Status: participant.Status,
         'Mobile Number': participant['Mobile Number'],
         'T-Shirt Size': participant['T-Shirt Size'],
-        CheckIn: participant.CheckIn
+        CheckIn: participant.CheckIn,
+        Certificate: participant.Certificate
+
       })).slice(0, this.totalParticipants); //take the totalParticipants value from the input field
       this.filteredParticipants = this.participants;
       this.updateParticipantCounts();
@@ -173,6 +185,22 @@ export class BodyUserListComponent implements OnInit {
     this.updateParticipantCounts();
   }
 
+  Certificate(participant: Participant) {
+
+    participant.Certificate = participant.Certificate === 1 ? 0 : 1;
+    this.http.put(`${this.apiUrl}/participants/certificate/${participant.id}`, { Certificate: participant.Certificate })
+      .subscribe({
+        next: data => {
+          // Log the data returned by the API to the console
+          // console.log(data);
+        },
+        error: error => {
+          // Log any error that occurred during the request to the console
+          console.error(error);
+        }
+      });
+  }
+
   private updateParticipantCounts() {
     this.countCheckIn1 = this.participants.filter(participant => participant.CheckIn === 1).length;
     this.totalParticipants = this.participants.length;
@@ -183,3 +211,4 @@ export class BodyUserListComponent implements OnInit {
 export class BodyUserListModule {
 
 }
+

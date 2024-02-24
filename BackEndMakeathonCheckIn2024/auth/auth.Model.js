@@ -42,8 +42,9 @@ const ITQParticipantsSchema =  new mongoose.Schema({
     'Last Name': String,
     'E-Mail': String,
     'Mobile Number': String,
-    CheckIn: Number
-    
+    CheckIn: Number,
+    Certificate: Boolean
+
 });
 
 // Creating the ITQParticipants model from the schema

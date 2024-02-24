@@ -12,10 +12,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AddParticipantComponent {
   salutation: string = ''; 
+  category: string = '';
   firstName: string = ''; 
   lastName: string = ''; 
   email: string = ''; 
+  tshirtsize: string = '';
   mobileNumber: string = ''; 
+
   // apiUrl = 'http://localhost:3000';
   apiUrl = '/auth'; //for AWS
 
@@ -31,6 +34,7 @@ export class AddParticipantComponent {
     if (form.valid) {
       const userData = {
         Salutation: this.salutation,
+        Category :this.category,
         'First Name': this.firstName,
         'Last Name': this.lastName,
         'E-Mail': this.email,

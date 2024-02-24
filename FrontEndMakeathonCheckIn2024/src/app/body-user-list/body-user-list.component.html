@@ -27,6 +27,7 @@
             <th class="column-status" scope="col">Status</th>
             <th class="column-tshirt-size" scope="col">T-Shirt Size</th>
             <th class="column-checkin" scope="col">CheckIn</th>
+            <th class="column-certificate" scope="col">Certificate</th>
           </tr>
         </thead>
         <tbody class="table-container-body">
@@ -46,6 +47,14 @@
                 [class.not-checked-in]="participant.CheckIn === 0" (click)="updateParticipantCheckIn(participant)">
                 {{ participant.CheckIn === 1 ? 'Checked In' : 'Not Checked In' }}
               </button>
+            </td>
+            <td>
+              <button *ngIf="participant.Category === 'YT'" class="button-Certificate" [class.Certificate-in]="participant.Certificate === 1"
+              [class.not-Certificate]="participant.Certificate === 0" (click)="Certificate(participant)">
+              {{ participant.Certificate === 1 ? 'Yes Certificate' : 'Not Certificate' }}
+              </button>
+            </td>
+            
           </tr>
         </tbody>
       </table>

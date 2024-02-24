@@ -12,9 +12,31 @@
                           <mat-option value="Mrs.">Mrs.</mat-option>
                         </mat-select>
                       </mat-form-field>
+                      <mat-form-field>
+                        <mat-label>Category</mat-label>
+                        <mat-select [(value)]="category" >
+                          <mat-option value="Coach">Coach</mat-option>
+                          <mat-option value="Sponsor">Sponsor</mat-option>
+                          <mat-option value="YT">YT</mat-option>
+                          <mat-option value="Prof">Prof</mat-option>
+                          <mat-option value="Teacher">Teacher</mat-option>
+                          <mat-option value="Vis">Vis</mat-option>
+                        </mat-select>
+                      </mat-form-field>    
+                      <mat-form-field>
+                        <mat-label>T-Shirt Size</mat-label>
+                        <mat-select [(value)]="tshirtsize" >
+                          <mat-option value="S">S</mat-option>
+                          <mat-option value="M">M</mat-option>
+                            <mat-option value="L">L</mat-option>
+                            <mat-option value="XL">XL</mat-option>
+                            <mat-option value="XXL">XXL</mat-option>
+                            <mat-option value="XXXL">XXXL</mat-option>
+                        </mat-select>
+                      </mat-form-field>
                     <mat-form-field>
                         <mat-label>First Name</mat-label>
-                        <input matInput [(ngModel)]="firstName" name="First Name" >
+                        <input matInput [(ngModel)]="firstName" name="First Name" required >
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Last Name</mat-label>
@@ -22,12 +44,18 @@
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Email</mat-label>
-                        <input matInput [(ngModel)]="email" name="E-mail" >
+                        <input matInput [(ngModel)]="email" name="E-mail" required>
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Mobile Number</mat-label>
-                        <input matInput [(ngModel)]="mobileNumber" name="Mobile Number" >
+                        <input matInput [(ngModel)]="mobileNumber" name="Mobile Number" required>
                     </mat-form-field>
+
+                    <mat-label>
+                        <input type="checkbox" formControlName="receiveCertificate">
+                         Receive Certificate
+                      </mat-label>
+
                     <div class="center">
                         <button class="button" type="submit" >Add and CheckIn</button>
                     </div>

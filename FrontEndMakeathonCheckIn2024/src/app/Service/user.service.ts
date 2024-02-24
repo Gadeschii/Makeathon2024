@@ -80,7 +80,7 @@ export class UserService {
   }
 
   // Method to get the token from local storage
-  private getToken(): string {
+   getToken(): string {
     if (!this.token) {
       this.token = localStorage.getItem("ACCESS_TOKEN") || '';
     }

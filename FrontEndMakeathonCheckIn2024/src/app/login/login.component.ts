@@ -17,10 +17,13 @@ export class LoginComponent implements OnInit {
   password: string  = ''; // Property for password
 
   // Constructor with UserService and Router injected
-  constructor(private authService: UserService, private router: Router) { }
+  constructor(private authService: UserService,private userService: UserService, private router: Router) { }
 
   // ngOnInit lifecycle hook
   ngOnInit() {
+    if (this.userService.getToken()) {
+      this.router.navigate(['/auth/dashboard']);
+    }
   }
 
   // Method to handle login
