@@ -43,7 +43,7 @@ const ITQParticipantsSchema =  new mongoose.Schema({
     'E-Mail': String,
     'Mobile Number': String,
     CheckIn: Number,
-    Certificate: Boolean
+    Certificate: Number
 
 });
 

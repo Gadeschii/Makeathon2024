@@ -61,11 +61,6 @@ router.get('/', (req, res) => {
     res.send("Hello World:)");
 });
 
-app.use('/auth', router);
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './FrontEndMakeathonCheckIn2024/dist/FrontEndMakeathonCheckIn2024/index.html'));
-});
 
 // Use the router for all routes
 app.use(router);
