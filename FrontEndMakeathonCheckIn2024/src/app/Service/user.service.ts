@@ -65,10 +65,6 @@ export class UserService {
       ));
   }
 
-  gethola(){
-    this.httpClient.get(`${this.AUTH_SERVER}/hola`).subscribe(value => console.log(value));
-  }
-
   // Method to log out a user
   logout(): void {
     this.token = '';

@@ -12,10 +12,6 @@ module.exports = (router) => {
     // Add more routes as needed
     router.get('/users', UsersController.getAllUsers);
     router.get('/users/:id', UsersController.getUser);
-    //testing
-    router.get('/holaUser', UsersController.getAllUsers);
-    router.get('/hola', UsersController.hola);
-
     
   //  router.post('/users/create', UsersController.registerUser);
     router.put('/users/:id', UsersController.updateUser);
@@ -28,6 +24,7 @@ module.exports = (router) => {
 
     //Route for collection from database
     router.put('/participants/checkin/:id', UsersController.updateCheckIn);
+    router.put('auth/participants/checkin/:id', UsersController.updateCheckIn);
 
     router.post('/auth/addparticipant', UsersController.addParticipant);
     router.post('/addparticipant', UsersController.addParticipant);

@@ -47,7 +47,10 @@ export class BodyUserListComponent implements OnInit {
   //apiUrl = 'https://gadeschii.github.io/Makeathon2024/';
   // apiUrl = 'https://192.168.1.125:3000';
   // apiUrl = 'https://192.168.1.125:443';
-  apiUrl = 'http://localhost:3000';
+  apiUrl = '/auth';
+
+  // apiUrl = 'http://localhost:3000';
+
   scrollInterval: number = 0;
 
   checkedInParticipantsCount: number = 0;
@@ -73,7 +76,7 @@ export class BodyUserListComponent implements OnInit {
       .subscribe(value => this.filteredParticipants = value);
 
   }
-
+ 
   // Method to get all participants
   getAllParticipants() {
     this.userService.getAllParticipants().subscribe(data => {

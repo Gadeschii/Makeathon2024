@@ -36,6 +36,7 @@ export class AddParticipantComponent {
         'E-Mail': this.email,
         'Mobile Number': this.mobileNumber
       };
+      
       this.http.post(`${this.apiUrl}/auth/addparticipant`, userData)    
             .subscribe(response => {
               console.log(response);

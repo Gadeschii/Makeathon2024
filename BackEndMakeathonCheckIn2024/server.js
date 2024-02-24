@@ -61,9 +61,7 @@ router.get('/', (req, res) => {
     res.send("Hello World:)");
 });
 
-router.get('/hola', (req, res) => {
-  res.send("hola World");
-});
+
 
 // Use the router for all routes
 app.use(router);

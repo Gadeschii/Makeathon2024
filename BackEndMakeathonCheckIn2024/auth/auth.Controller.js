@@ -11,9 +11,6 @@ const app = require('express')();
 
 // Function to create a new user
 exports.registerUser = (req, res, next) => {
-    console.log(req.body);//Testing
-    console.log('hola estoy en registerUser');//Testing
-
     // Check if user already exists
     ITQCredentials.findOne({ name: req.body.name })
         .then(user => {
@@ -121,7 +118,6 @@ exports.updateCheckIn = (req, res, next) => {
     const id = req.params.id;
     const newCheckInStatus = req.body.CheckIn;
 
-
     // Find the participant in the database and update their check-in status
     ITQParticipants.findById(id) 
         .then(participant => {
@@ -152,11 +148,6 @@ exports.updateCheckIn = (req, res, next) => {
             // If there was an error finding the participant, send a server error response
             return res.status(500).send('Server error2');
         });
-}
-
-//testing
-exports.hola = (req, res, next) => {
-    res.send('Hola');
 }
 
 exports.addParticipant = (req, res, next) => {
