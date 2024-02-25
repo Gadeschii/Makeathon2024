@@ -5,6 +5,7 @@
   <input type="search" id="search" [formControl]="searchControl" placeholder="Search...">
   <button class="button" [routerLink]="['/auth/addparticipant']">Add Participant</button>
   <button class="button" (click)="exportToExcel()">Export to Excel</button>
+  <button class="button" (click)="exportCertificate()">Certificate</button>
   <button class="button" [routerLink]="['/auth/viewmetrics']">View Metrics</button>
   <span>{{countCheckIn1}} / {{totalParticipants}} </span>
 </div>

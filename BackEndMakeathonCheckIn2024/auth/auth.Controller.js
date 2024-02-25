@@ -194,9 +194,11 @@ exports.addParticipant = (req, res, next) => {
     // Create a new participant object with the request data
     const newParticipant = new ITQParticipants({
         Salutation: req.body.Salutation,
+        Category: req.body.Category,
+        "T-Shirt Size": req.body['T-Shirt Size'],
         "First Name": req.body['First Name'],
         "Last Name": req.body['Last Name'],
-        "E-mail": req.body['E-Mail'],
+        "E-Mail": req.body['E-Mail'],
         "Mobile Number": req.body['Mobile Number'],
         CheckIn: 1,
         Certificate: req.body.Certificate

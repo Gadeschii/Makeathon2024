@@ -115,6 +115,10 @@ export class BodyUserListComponent implements OnInit {
   exportToExcel() {
     this.userService.exportToExcel();
   }
+  
+  exportCertificate() {
+    this.userService.exportCertificate();
+  }
 
   getTotalParticipants() {
     this.userService.getAllParticipants().subscribe(data => {
@@ -200,6 +204,7 @@ export class BodyUserListComponent implements OnInit {
         }
       });
   }
+
 
   private updateParticipantCounts() {
     this.countCheckIn1 = this.participants.filter(participant => participant.CheckIn === 1).length;

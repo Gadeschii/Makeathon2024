@@ -111,6 +111,25 @@ export class UserService {
     });
   }
 
+  //Method to export the E-mail of participants to Certificate value == 1
+  exportCertificate() {
+    this.getAllParticipants().subscribe(participants => {
+      const certificateParticipants = participants.filter(participant => participant.Certificate === 1)
+        .map(participant => ({
+          'First Name': participant['First Name'],
+          'Last Name': participant['Last Name'],
+          'E-Mail': participant['E-Mail'],
+          'Mobile Number': participant['Mobile Number'],
+          CheckIn: participant.CheckIn,
+          Certificate: participant.Certificate
+        }));
+      const worksheet = XLSX.utils.json_to_sheet(certificateParticipants);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Certificate Participants');
+      XLSX.writeFile(workbook, 'certificateParticipants.xlsx');
+    });
+  }
+
   getTotalParticipants(): Observable<any[]> {
     return this.httpClient.get<any[]>(`${this.apiUrl}/participants`);
   }

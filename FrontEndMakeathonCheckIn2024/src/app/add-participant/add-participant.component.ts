@@ -18,6 +18,8 @@ export class AddParticipantComponent {
   email: string = ''; 
   tshirtsize: string = '';
   mobileNumber: string = ''; 
+  certificate: boolean = false;
+
 
   // apiUrl = 'http://localhost:3000';
   apiUrl = '/auth'; //for AWS
@@ -34,11 +36,13 @@ export class AddParticipantComponent {
     if (form.valid) {
       const userData = {
         Salutation: this.salutation,
-        Category :this.category,
+        Category: this.category,
+        'T-Shirt Size': this.tshirtsize,
         'First Name': this.firstName,
         'Last Name': this.lastName,
         'E-Mail': this.email,
-        'Mobile Number': this.mobileNumber
+        'Mobile Number': this.mobileNumber,
+        Certificate: this.certificate
       };
       
       this.http.post(`${this.apiUrl}/auth/addparticipant`, userData)    
