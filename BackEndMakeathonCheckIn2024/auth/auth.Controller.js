@@ -233,6 +233,7 @@ exports.searchUsers = (req, res, next) => {
     User.find({
         $or: [
             { 'First Name': new RegExp(searchTerm, 'i') },
+            { 'Last Name': new RegExp(searchTerm, 'i') },
             { 'E-Mail': new RegExp(searchTerm, 'i') },
             { 'Mobile Number': new RegExp(searchTerm, 'i') }
         ]
