@@ -19,7 +19,6 @@ const routes: Routes = [
     { path: 'auth/dashboard', component: DashboardComponent, canActivate: [AuthGuardService] },
     { path: 'auth/viewmetrics', component: ViewMetricsComponent },
     { path: 'auth/addparticipant', component: AddParticipantComponent },
-
 ];
 
 @NgModule({

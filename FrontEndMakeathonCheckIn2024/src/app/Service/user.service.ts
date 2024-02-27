@@ -116,9 +116,15 @@ export class UserService {
     this.getAllParticipants().subscribe(participants => {
       const certificateParticipants = participants.filter(participant => participant.Certificate === 1)
         .map(participant => ({
+          Satulutation: participant.Satulutation,
+          Category: participant.Category,
           'First Name': participant['First Name'],
           'Last Name': participant['Last Name'],
           'E-Mail': participant['E-Mail'],
+          Country: participant['Country'],
+          Status: participant.Status,
+          'University I Institution I Company': participant['University I Institution I Company'],
+          'T-Shirt Size': participant['T-Shirt Size'],
           'Mobile Number': participant['Mobile Number'],
           CheckIn: participant.CheckIn,
           Certificate: participant.Certificate

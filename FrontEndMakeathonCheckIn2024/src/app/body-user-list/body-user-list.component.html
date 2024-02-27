@@ -18,31 +18,31 @@
         <thead class="table-container-titule">
           <tr>
             <th class="column-salutation" scope="col">Salutation</th>
+            <th class="column-category" scope="col">Category</th>
             <th class="column-first-name" scope="col">First Name</th>
             <th class="column-last-name" scope="col">Last Name</th>
-            <th class="column-age" scope="col">Age</th>
+            <!-- <th class="column-age" scope="col">Age</th> -->
             <th class="column-email" scope="col">E-Mail</th>
             <th class="column-country" scope="col">Country</th>
-            <th class="column-mobile-number" scope="col">Mobile Number</th>
-            <th class="column-category" scope="col">Category</th>
             <th class="column-status" scope="col">Status</th>
             <th class="column-tshirt-size" scope="col">T-Shirt Size</th>
+            <th class="column-mobile-number" scope="col">Mobile Number</th>
             <th class="column-checkin" scope="col">CheckIn</th>
-            <th class="column-certificate" scope="col">Certificate</th>
+            <th class="column-certificate" scope="col">Makeathon Certificate</th>
           </tr>
         </thead>
         <tbody class="table-container-body">
           <tr *ngFor="let participant of filteredParticipants ">
             <td class="column-salutation" style="padding-top: 40px"> {{participant.Salutation}}</td>
+            <td class="column-category" style="padding-top: 40px"> {{participant.Category}}</td>
             <td class="column-first-name" style="padding-top: 40px"> {{ participant['First Name'] }}</td>
             <td class="column-last-name" style="padding-top: 40px"> {{ participant['Last Name'] }}</td>
-            <td class="column-age" style="padding-top: 40px"> {{participant.Age}}</td>
+            <!-- <td class="column-age" style="padding-top: 40px"> {{participant.Age}}</td> -->
             <td class="column-email" style="padding-top: 40px"> {{ participant['E-Mail'] }}</td>
             <td class="column-country" style="padding-top: 40px"> {{participant.Country}}</td>
-            <td class="column-mobile-number" style="padding-top: 40px"> {{ participant['Mobile Number'] }}</td>
-            <td class="column-category" style="padding-top: 40px"> {{participant.Category}}</td>
             <td class="column-status" style="padding-top: 40px"> {{participant.Status}}</td>
             <td class="column-tshirt-size" style="padding-top: 40px"> {{ participant['T-Shirt Size'] }}</td>
+            <td class="column-mobile-number" style="padding-top: 40px"> {{ participant['Mobile Number'] }}</td>
             <td>
               <button class="button-CheckIn" [class.checked-in]="participant.CheckIn === 1"
                 [class.not-checked-in]="participant.CheckIn === 0" (click)="updateParticipantCheckIn(participant)">
@@ -52,7 +52,7 @@
             <td>
               <button *ngIf="participant.Category === 'YT'" class="button-Certificate" [class.Certificate-in]="participant.Certificate === 1"
               [class.not-Certificate]="participant.Certificate === 0" (click)="Certificate(participant)">
-              {{ participant.Certificate === 1 ? 'Yes Certificate' : 'Not Certificate' }}
+              {{ participant.Certificate === 1 ? 'Yes Certificate' : 'No Certificate' }}
               </button>
             </td>
             

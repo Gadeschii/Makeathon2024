@@ -6,8 +6,6 @@ import { FormControl } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-
-
 import { Observable } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -168,6 +166,7 @@ export class BodyUserListComponent implements OnInit {
     return this.participants.filter(participant =>
       (participant['First Name'] && participant['First Name'].toLowerCase().includes(filterValue)) ||
       (participant['E-Mail'] && participant['E-Mail'].toLowerCase().includes(filterValue)) ||
+      (participant['Category'] && participant['Category'].toLowerCase().includes(filterValue)) ||
       (participant['Mobile Number'] && participant['Mobile Number'].toString().includes(filterValue))
     );
   }
@@ -190,7 +189,6 @@ export class BodyUserListComponent implements OnInit {
   }
 
   Certificate(participant: Participant) {
-
     participant.Certificate = participant.Certificate === 1 ? 0 : 1;
     this.http.put(`${this.apiUrl}/participants/certificate/${participant.id}`, { Certificate: participant.Certificate })
       .subscribe({
@@ -205,14 +203,12 @@ export class BodyUserListComponent implements OnInit {
       });
   }
 
-
   private updateParticipantCounts() {
     this.countCheckIn1 = this.participants.filter(participant => participant.CheckIn === 1).length;
     this.totalParticipants = this.participants.length;
   }
 
 }
-
 export class BodyUserListModule {
 
 }

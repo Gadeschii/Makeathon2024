@@ -33,8 +33,6 @@ const ITQCredentialSchema = new mongoose.Schema({
 // Creating the ITQCredentials model from the schema
 const ITQCredentials = mongoose.model('ITQCredentials', ITQCredentialSchema, 'ITQCredentials');
 
-
-
 // Defining the schema for the ITQParticipants collection
 const ITQParticipantsSchema =  new mongoose.Schema({
     Salutation: String,
@@ -46,12 +44,10 @@ const ITQParticipantsSchema =  new mongoose.Schema({
     'Mobile Number': String,
     CheckIn: Number,
     Certificate: Number
-
 });
 
 // Creating the ITQParticipants model from the schema
 const ITQParticipants = mongoose.model('ITQParticipants', ITQParticipantsSchema, 'ITQParticipants');
-
 
 // Exporting the ITQCredentials and ITQParticipants models
 module.exports = { ITQCredentials, ITQParticipants };

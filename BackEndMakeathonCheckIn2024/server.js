@@ -1,5 +1,6 @@
 // Import necessary modules
 const cors = require('cors'); 
+const path = require('path');
 const authRoutes = require('./auth/auth.Routers');
 const express = require('express');
 
@@ -60,7 +61,6 @@ authRoutes(router);
 router.get('/', (req, res) => {
     res.send("Hello World:)");
 });
-
 
 // Use the router for all routes
 app.use(router);
