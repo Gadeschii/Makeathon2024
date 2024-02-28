@@ -20,6 +20,13 @@ export class AddParticipantComponent {
   mobileNumber: string = ''; 
   certificate: boolean = false;
 
+  answer1: string = '';
+  answer2: string = '';
+  answer3: string = '';
+  answer4: string = '';
+  answer5: string = '';
+
+
 
   // apiUrl = 'http://localhost:3000';
   apiUrl = '/auth'; //for AWS
@@ -42,7 +49,12 @@ export class AddParticipantComponent {
         'Last Name': this.lastName,
         'E-Mail': this.email,
         'Mobile Number': this.mobileNumber,
-        Certificate: this.certificate
+        Certificate: this.certificate,
+        Question1: this.answer1,
+        Question2: this.answer2,
+        Question3: this.answer3,
+        Question4: this.answer4,
+        Question5: this.answer5,
       };
       
       this.http.post(`${this.apiUrl}/auth/addparticipant`, userData)    

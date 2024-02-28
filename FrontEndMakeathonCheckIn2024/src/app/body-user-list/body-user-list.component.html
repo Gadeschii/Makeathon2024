@@ -28,7 +28,7 @@
             <th class="column-tshirt-size" scope="col">T-Shirt Size</th>
             <th class="column-mobile-number" scope="col">Mobile Number</th>
             <th class="column-checkin" scope="col">CheckIn</th>
-            <th class="column-certificate" scope="col">Makeathon Certificate</th>
+            <th class="column-certificate" scope="col"> Certificate</th>
           </tr>
         </thead>
         <tbody class="table-container-body">
@@ -41,8 +41,8 @@
             <td class="column-email" style="padding-top: 40px"> {{ participant['E-Mail'] }}</td>
             <td class="column-country" style="padding-top: 40px"> {{participant.Country}}</td>
             <td class="column-status" style="padding-top: 40px"> {{participant.Status}}</td>
-            <td class="column-tshirt-size" style="padding-top: 40px"> {{ participant['T-Shirt Size'] }}</td>
-            <td class="column-mobile-number" style="padding-top: 40px"> {{ participant['Mobile Number'] }}</td>
+            <td class="column-tshirt-size" style="padding-top: 30px"> {{ participant['T-Shirt Size'] }}</td>
+            <td class="column-mobile-number" style="padding-top: 30px"> {{ participant['Mobile Number'] }}</td>
             <td>
               <button class="button-CheckIn" [class.checked-in]="participant.CheckIn === 1"
                 [class.not-checked-in]="participant.CheckIn === 0" (click)="updateParticipantCheckIn(participant)">

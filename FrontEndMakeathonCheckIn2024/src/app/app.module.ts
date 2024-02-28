@@ -13,6 +13,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FooterComponent } from './footer/footer.component';
 
+import { MatRadioModule } from '@angular/material/radio';
+
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -60,6 +63,7 @@ import { ViewMetricsComponent } from './view-metrics/view-metrics.component';
     RouterModule,
     MatSelectModule,
     ReactiveFormsModule,
+    MatRadioModule,
     AgChartsAngularModule
   ],
   // providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],

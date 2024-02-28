@@ -107,14 +107,17 @@ table {
   /* Search end */
 
   .table-container-titule {
-    font-family: 'KG Life is Messy', sans-serif;
-    justify-content: center;
+    /* font-family: 'KG Life is Messy', sans-serif; */
+    text-align: center;
+    padding-top: 10px;
+    vertical-align: middle;
     align-items: center;    
     color: white;
     background-color: #8cbc54;
   }
   .table-container-titule table {
-    text-align: justify;
+    text-align: center;
+   
     /* width: 100%; Adjust this value to change the width of the table */
     
   }
@@ -127,7 +130,7 @@ table {
   .table-container-body {
     justify-content: center;
     align-items: center;
-    padding-top: 20px;
+    /* padding-top: 20px; */
     /* width: 100%; */
     border-spacing: 10px;
     overflow-y: scroll;
@@ -157,7 +160,6 @@ table {
   td {
     border-right: 1px solid #000; 
     border-bottom: 1.5px solid #000; 
-    
   }
   
   td:last-child {
@@ -207,7 +209,7 @@ table {
   padding: 5px 5px; 
   border: 1px solid #000;
   background: #f8f4f1;
-  vertical-align: top;
+  /* vertical-align: top; */
 }
 
  
@@ -306,7 +308,7 @@ thead th {
 }
 .faux-table thead th, .faux-table tfoot th, .faux-table tfoot td,
 .table-wrap thead th, .table-wrap tfoot th, .table-wrap tfoot td{
-  background: #d4cec9;
+  background: #8cbc54;
 }
 .faux-table {
   position:absolute;
