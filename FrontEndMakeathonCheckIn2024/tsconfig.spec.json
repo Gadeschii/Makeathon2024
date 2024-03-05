@@ -3,12 +3,11 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
-    "types": [
-      "jasmine"
-    ]
+    "types": [ "jest"]
   },
   "include": [
     "src/**/*.spec.ts",
-    "src/**/*.d.ts"
+    "node_modules/@types/jest/index.d.ts"
+   // "src/**/*.d.ts"
   ]
 }

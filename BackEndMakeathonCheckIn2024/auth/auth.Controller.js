@@ -8,11 +8,8 @@ const SECRET_KEY = 'SECRETKEY123456';
 const mongoose = require('mongoose');
 const app = require('express')();
 
-
 // Function to create a new user
 exports.registerUser = (req, res, next) => {
-    console.log(req.body);//Testing
-
     // Check if user already exists
     ITQCredentials.findOne({ name: req.body.name })
         .then(user => {
@@ -48,19 +45,23 @@ exports.registerUser = (req, res, next) => {
                     })
                     .catch(err => {
                         // For any other errors, send a server error response
-                        return res.status(500).send('Server error');
+                        console.error('test');
+                        console.error(err);
+                        return res.status(500).send(`Server errorToken: ${err.message}`);
+                        
                     });
             }
         })
         .catch(err => {
             // If there is an error checking for the user, send a server error response
-            return res.status(500).send('Server error');
+            return res.status(500).send(`Server errorMongoDB: ${err.message}`);
         });
 }
 
 // Function to log in a user
 exports.loginUser = (req, res, next) => {
     // Create a user object with the request data
+  
     const userData = {
         name: req.body.name,
         password: req.body.password
@@ -115,7 +116,7 @@ exports.updateCheckIn = (req, res, next) => {
     // Get the participant id from the request
     const id = req.params.id;
     const newCheckInStatus = req.body.CheckIn;
-
+    console.log(req.body.CheckIn); //Testing
 
     // Find the participant in the database and update their check-in status
     ITQParticipants.findById(id) 
@@ -149,16 +150,57 @@ exports.updateCheckIn = (req, res, next) => {
         });
 }
 
+exports.updateCertificate = (req, res, next) => {
+    // Get the participant id from the request
+    const id = req.params.id;
+    const newCertificateStatus = req.body.Certificate;
+    console.log(req.body.Certificate); //Testing
+
+    // Find the participant in the database and update their check-in status
+    ITQParticipants.findById(id)
+        .then(participant => {
+            console.log(id); //Testing
+            if (!participant) {
+                // If the participant was not found, send an error response
+                return res.status(404).send('Participant not found');
+            } else {
+                // Set the check-in status of the participant to the new status
+                participant.Certificate = newCertificateStatus;
+                // Save the updated participant
+                participant.save()
+                    .then(() => {
+                        // Send the updated participant
+                        res.send(participant.Certificate.toString());
+                        console.log(participant.Certificate); //Testing
+                    })
+
+                    .catch(err => {
+                        // Log the error for debugging
+                        console.error(err);
+                        // If there was an error saving the participant, send a server error response
+                        return res.status(500).send('Server errorCertificate1');
+                    });
+            }
+        })
+        .catch(err => {
+            // If there was an error finding the participant, send a server error response
+            return res.status(500).send('Server errorCertificate2');
+        });
+}
+
 
 exports.addParticipant = (req, res, next) => {
     // Create a new participant object with the request data
     const newParticipant = new ITQParticipants({
         Salutation: req.body.Salutation,
+        Category: req.body.Category,
+        "T-Shirt Size": req.body['T-Shirt Size'],
         "First Name": req.body['First Name'],
         "Last Name": req.body['Last Name'],
-        "E-mail": req.body['E-Mail'],
+        "E-Mail": req.body['E-Mail'],
         "Mobile Number": req.body['Mobile Number'],
-        CheckIn: 1
+        CheckIn: 1,
+        Certificate: req.body.Certificate
     });
 
     // Save the new participant in the database
@@ -170,8 +212,78 @@ exports.addParticipant = (req, res, next) => {
         .catch(err => {
             // If there was an error saving the participant, send a server error response
             console.error(err);
-            return res.status(500).send('Server error');
+            return res.status(500).send('Server error AddParticipant');
         });
+}
+
+// Function to get all users
+exports.getAllUsers = (req, res, next) => {
+    // Implement logic to get all users here
+    ITQParticipants.find({}, (err, users) => {
+        if (err) res.status(500).send(err);
+        res.status(200).send(users);
+      });
+}
+
+// Function to search users
+exports.searchUsers = (req, res, next) => {
+    const searchTerm = req.query.term.toLowerCase();
+    User.find({
+        $or: [
+            { 'First Name': new RegExp(searchTerm, 'i') },
+            { 'Last Name': new RegExp(searchTerm, 'i') },
+            { 'E-Mail': new RegExp(searchTerm, 'i') },
+            { 'Mobile Number': new RegExp(searchTerm, 'i') }
+        ]
+    }, (err, users) => {
+        if (err) return res.status(500).send(err);
+        res.status(200).send(users);
+    });
+}
+
+// Function to get a user by ID
+exports.getUser = (req, res, next) => {
+    ITQParticipants.findById(req.params.id, (err, user) => {
+        if (err) return res.status(500).send(err);
+        if (!user) return res.status(404).send('User not found');
+        res.status(200).send(user);
+    });
+}
+
+// Function to get a user by name
+exports.getUserByName = (req, res, next) => {
+    ITQParticipants.findOne({ name: req.params.name }, (err, user) => {
+        if (err) return res.status(500).send(err);
+        if (!user) return res.status(404).send('User not found');
+        res.status(200).send(user);
+    });
+}
+
+// Function to get a user by email
+exports.getUserByEmail = (req, res, next) => {
+    ITQParticipants.findOne({ email: req.params.email }, (err, user) => {
+        if (err) return res.status(500).send(err);
+        if (!user) return res.status(404).send('User not found');
+        res.status(200).send(user);
+    });
+}
+
+// Function to update a user
+exports.updateUser = (req, res, next) => {
+    ITQParticipants.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, user) => {
+        if (err) return res.status(500).send(err);
+        if (!user) return res.status(404).send('User not found');
+        res.status(200).send(user);
+    });
+}
+
+// Function to delete a user
+exports.deleteUser = (req, res, next) => {
+    ITQParticipants.findByIdAndRemove(req.params.id, (err, user) => {
+        if (err) return res.status(500).send(err);
+        if (!user) return res.status(404).send('User not found');
+        res.status(200).send('User deleted');
+    });
 }
 
 
@@ -219,73 +331,3 @@ exports.addParticipant = (req, res, next) => {
 //         return res.status(500).send('Server error');
 //     });
 // }
-
-// Function to get all users
-exports.getAllUsers = (req, res, next) => {
-    // Implement logic to get all users here
-    ITQParticipants.find({}, (err, users) => {
-        if (err) res.status(500).send(err);
-        res.status(200).send(users);
-      });
-}
-
-// Function to search users
-exports.searchUsers = (req, res, next) => {
-    const searchTerm = req.query.term.toLowerCase();
-
-    User.find({
-        $or: [
-            { 'First Name': new RegExp(searchTerm, 'i') },
-            { 'E-Mail': new RegExp(searchTerm, 'i') },
-            { 'Mobile Number': new RegExp(searchTerm, 'i') }
-        ]
-    }, (err, users) => {
-        if (err) return res.status(500).send(err);
-        res.status(200).send(users);
-    });
-}
-
-// Function to get a user by ID
-exports.getUser = (req, res, next) => {
-    ITQParticipants.findById(req.params.id, (err, user) => {
-        if (err) return res.status(500).send(err);
-        if (!user) return res.status(404).send('User not found');
-        res.status(200).send(user);
-    });
-    
-}
-// Function to get a user by name
-exports.getUserByName = (req, res, next) => {
-    ITQParticipants.findOne({ name: req.params.name }, (err, user) => {
-        if (err) return res.status(500).send(err);
-        if (!user) return res.status(404).send('User not found');
-        res.status(200).send(user);
-    });
-}
-
-// Function to get a user by email
-exports.getUserByEmail = (req, res, next) => {
-    ITQParticipants.findOne({ email: req.params.email }, (err, user) => {
-        if (err) return res.status(500).send(err);
-        if (!user) return res.status(404).send('User not found');
-        res.status(200).send(user);
-    });
-}
-
-// Function to update a user
-exports.updateUser = (req, res, next) => {
-    ITQParticipants.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, user) => {
-        if (err) return res.status(500).send(err);
-        if (!user) return res.status(404).send('User not found');
-        res.status(200).send(user);
-    });
-}
-
-// Function to delete a user
-exports.deleteUser = (req, res, next) => {
-    ITQParticipants.findByIdAndRemove(req.params.id, (err, user) => {
-        if (err) return res.status(500).send(err);
-        if (!user) return res.status(404).send('User not found');
-        res.status(200).send('User deleted');
-    });
-}

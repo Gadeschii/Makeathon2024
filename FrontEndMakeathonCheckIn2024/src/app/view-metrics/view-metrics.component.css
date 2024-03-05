@@ -1,0 +1,90 @@
+@import url('https://fonts.cdnfonts.com/css/kg-life-is-messy');
+
+@media (max-width: 600px) {
+    .left-side {
+      width: 400px;
+      margin: 0 auto;
+      display: block;
+    }
+    .right-side {
+        display: none;
+      }
+}
+@media (max-width: 601px) {
+    .left-side {
+      width: 80%;
+      margin: 0 auto;
+      display: block;
+    }
+    .right-side {
+        display: none;
+      }
+  }
+  
+  @media (max-width: 992px) {
+    .left-side {
+      width: 50%;
+      margin: 0 auto;
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    .left-side {
+      width: 30%;
+      margin: 0 auto;
+    }
+  }
+
+.titule {
+    font-family: 'KG Life is Messy', sans-serif;
+    font-size: 3em; /* Makes the title larger */
+    text-align: center; /* Centers the title */
+    margin-bottom: 20px;
+}
+body {
+    background-color: #8cbc54;
+  
+}
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250vh;
+    background-color: #8cbc54;
+}
+
+.main-container {
+    width: 90%;
+    height: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #f8f4f1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.center-side {
+    text-align: center; /* Aligns the text to the left */
+    height: 500px;
+    margin: 20px;
+}
+
+.button {
+    width: 250px;
+}
+
+#checkin, #country, #status {
+    width: 10%;
+    height: 10%;
+    margin-bottom: 20px;
+    
+}
+
+
+.Metric-text {
+    text-align: center; /* Centers the text */
+    margin-bottom: 10px; /* Adds a small space between the text and the image */
+    margin-left: 65px; /* Adjusts the right margin to move the text to the right */
+    font-family: 'KG Life is Messy', sans-serif;
+    font-size: 4em; /* Makes the title larger */
+}

@@ -1,7 +1,23 @@
-<div style="height: 400px; width: 600px;">
-  <h2> Checked Vs Total</h2>
-  <ag-charts-angular
-    style="height: 100%; width: 100%"
-    [options]="options"
-  ></ag-charts-angular>
+
+<div class="main-container">
+  <div class="content">
+   
+      <div class="center-side">
+        <p class="Metric-text">Metric Makeathon 2024</p>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <canvas id="checkin"></canvas>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <canvas id="country"></canvas>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <canvas id="status"></canvas>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+
+        <button class="button" (click)="goBack()">Go Back</button>
+        <button class="button" (click)="exportPdf()">Export Result</button>
+      </div>
+  </div>
 </div>

@@ -1,43 +1,123 @@
 <div class="container">
-    <div class="content"> 
-        <form #frmAddParticipant="ngForm" class="AddParticipantContainer" (ngSubmit)="onAddParticipant(frmAddParticipant)">
-            <div class="center">
-                <div class="left-side">
-                    <p class="AddParticipant-text">Add Participant</p>
-                    <mat-form-field>
-                        <mat-label>Salutation</mat-label>
-                        <mat-select [(value)]="salutation" >
-                          <mat-option value="Mr.">Mr.</mat-option>
-                          <mat-option value="Ms.">Ms.</mat-option>
-                          <mat-option value="Mrs.">Mrs.</mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>First Name</mat-label>
-                        <input matInput [(ngModel)]="firstName" name="First Name" >
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Last Name</mat-label>
-                        <input matInput [(ngModel)]="lastName" name="Last Name" >
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Email</mat-label>
-                        <input matInput [(ngModel)]="email" name="E-mail" >
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Mobile Number</mat-label>
-                        <input matInput [(ngModel)]="mobileNumber" name="Mobile Number" >
-                    </mat-form-field>
-                    <div class="center">
-                        <button class="button" type="submit" >Add and CheckIn</button>
-                    </div>
+  <div class="content">
+    <form #frmAddParticipant="ngForm" class="AddParticipantContainer" (ngSubmit)="onAddParticipant(frmAddParticipant)">
+      <div class="center">
+        <div class="left-side">
+          <p class="AddParticipant-text">Add Participant</p>
 
-                    <button class="button" (click)="goBack()">Go Back</button>
-                </div>
-            </div>
-            <div class="right-side">
-                <img src="assets/images/Smart-Green-Island-Makeathon.jpg" class="img" alt="Company Logo">
-            </div>
-        </form>
-    </div>
-</div> 
+          <mat-form-field>
+            <mat-label>Salutation</mat-label>
+            <mat-select [(value)]="salutation">
+              <mat-option value="Mr.">Mr.</mat-option>
+              <mat-option value="Ms.">Ms.</mat-option>
+              <mat-option value="Mrs.">Mrs.</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Category</mat-label>
+            <mat-select [(value)]="category">
+              <mat-option value="Coach">Coach</mat-option>
+              <mat-option value="Sponsor">Sponsor</mat-option>
+              <mat-option value="YT">YT</mat-option>
+              <mat-option value="Prof">Prof</mat-option>
+              <mat-option value="Teacher">Teacher</mat-option>
+              <mat-option value="Vis">Vis</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>T-Shirt Size</mat-label>
+            <mat-select [(value)]="tshirtsize">
+              <mat-option value="S">S</mat-option>
+              <mat-option value="M">M</mat-option>
+              <mat-option value="L">L</mat-option>
+              <mat-option value="XL">XL</mat-option>
+              <mat-option value="XXL">XXL</mat-option>
+              <mat-option value="XXXL">XXXL</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput [(ngModel)]="firstName" name="First Name" >
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput [(ngModel)]="lastName" name="Last Name">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>E-mail</mat-label>
+            <input matInput [(ngModel)]="email" name="E-Mail" >
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Mobile Number</mat-label>
+            <input matInput [(ngModel)]="mobileNumber" name="Mobile Number" >
+          </mat-form-field>
+<!-- 
+          <mat-form-field>
+            <mat-label>Are you already part of our Social Media Community?</mat-label>
+            <mat-radio-group [(ngModel)]="answer1" name="Q1">
+              <mat-radio-button value="yes">Yes</mat-radio-button>
+              <mat-radio-button value="no">No</mat-radio-button>
+            </mat-radio-group>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>I hereby agree that my above mentioned personal data for the planning,
+               implementation and follow-up of this event can be used by ITQ GmbH and Makeathon
+               Sponsors. Further information on data processing and the revocation of this consent
+               can be found in our Privacy Policy. (Art. 6, 1 lit. a GDPR)</mat-label>
+            <mat-radio-group [(ngModel)]="answer2" name="Q2">
+              <mat-radio-button value="yes">Yes</mat-radio-button>
+              <mat-radio-button value="no">No</mat-radio-button>
+            </mat-radio-group>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>I hereby agree that during the event, ITQ GmbH and Makeathon Sponsors will
+               take photos and movies of me, to use for marketing activities. Further information 
+               on data processing and the revocation of this consent can be found in our Privacy Policy.</mat-label>
+            <mat-radio-group [(ngModel)]="answer3" name="Q3">
+              <mat-radio-button value="yes">Yes</mat-radio-button>
+              <mat-radio-button value="no">No</mat-radio-button>
+            </mat-radio-group>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Are you already part of our Social Media Community?</mat-label>
+            <mat-radio-group [(ngModel)]="answer4" name="Q4">
+              <mat-radio-button value="yes">Yes</mat-radio-button>
+              <mat-radio-button value="no">No</mat-radio-button>
+            </mat-radio-group>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Are you already part of our Social Media Community?</mat-label>
+            <mat-radio-group [(ngModel)]="answer5" name="Q5">
+              <mat-radio-button value="yes">Yes</mat-radio-button>
+              <mat-radio-button value="no">No</mat-radio-button>
+            </mat-radio-group>
+          </mat-form-field> -->
+
+          <a href="https://www.itq.de/wp-content/uploads/2023/11/SMART-GREEN-ISLAND-MAKEATHON-ITQ-GmbH-Terms-and-Conditions-EN.pdf" target="_blank">Term and Condicion</a>
+          <a href="https://www.itq.de/wp-content/uploads/2022/12/SMART-GREEN-ISLAND-MAKEATHON-ITQ-GmbH-Privacy-Policy-EN.pdf" target="_blank">Privacy Policy</a>
+
+          <input type="checkbox" *ngIf="category === 'YT'" [(ngModel)]="certificate" name="Certificate" > Receive Makeathon Certificate
+
+          <div class="center">
+            <button class="button" type="submit">Add and CheckIn</button>
+          </div>
+
+          <button class="button" (click)="goBack()">Go Back</button>
+        </div>
+      </div>
+      <div class="right-side">
+        <img src="assets/images/Smart-Green-Island-Makeathon.jpg" class="img" alt="Company Logo">
+      </div>
+    </form>
+  </div>
+</div>

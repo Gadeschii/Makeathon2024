@@ -11,6 +11,10 @@ import { FormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { FooterComponent } from './footer/footer.component';
+
+import { MatRadioModule } from '@angular/material/radio';
+
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -19,7 +23,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatSelectModule } from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select'; 
+// import { LocationStrategy, HashLocationStrategy } from '@angular/common'; //Necessary for routing/deployment
 
 
 import { AgChartsAngularModule } from "ag-charts-angular";
@@ -33,6 +38,7 @@ import { ViewMetricsComponent } from './view-metrics/view-metrics.component';
     AppComponent,
     HeaderComponent,
     BodyUserListComponent,
+    FooterComponent,
     DashboardComponent,
     LoginComponent,
     AddParticipantComponent,
@@ -57,9 +63,10 @@ import { ViewMetricsComponent } from './view-metrics/view-metrics.component';
     RouterModule,
     MatSelectModule,
     ReactiveFormsModule,
-    AgChartsAngularModule,
-    
+    MatRadioModule,
+    AgChartsAngularModule
   ],
+  // providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   providers: [],
   bootstrap: [AppComponent]
 })

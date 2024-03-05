@@ -1,11 +1,20 @@
 // Import necessary modules
 const cors = require('cors'); 
+const path = require('path');
 const authRoutes = require('./auth/auth.Routers');
 const express = require('express');
 
 // Import configuration files
 const properties = require('./config/properties.js');
 const DB =  require('./config/db.js');
+
+
+// const fs = require('fs');
+// const https = require('https');
+const localhost = 'localhost ';
+const hostITQ = '192.168.1.125';
+const AWS = 'http://ec2-13-40-16-46.eu-west-2.compute.amazonaws.com';
+
 
 // Initialize the database
 DB();
@@ -20,26 +29,37 @@ const bodyParser = require('body-parser');
 const bodyParserJSON = bodyParser.json();
 const bodyParserURLEncoded = bodyParser.urlencoded({extended:true});
 
-// Use body-parser middleware to parse JSON and URL encoded data
+// const options = {
+//   key: fs.readFileSync('key.pem'),
+//   cert: fs.readFileSync('cert.pem'),
+//   passphrase: 'jjjj'
+// };
+
+// https.createServer(options, app).listen(properties.PORT, () => {
+//   console.log(`Server running on port ${properties.PORT}`);
+// });
+
+//Use body-parser middleware to parse JSON and URL encoded data
 app.use(bodyParserJSON);
 app.use(bodyParserURLEncoded);
 
-// Use CORS middleware to handle cross-origin requests
 var corsOptions = {
-    origin: ['http://localhost:4200', 'http://localhost:3000'], // Reemplaza estos con tus dominios
-    optionsSuccessStatus: 200 // Algunos navegadores antiguos (IE11, varios SmartTVs) fallan con 204
+  origin: [`http://${localhost}:4200`, 'http://localhost:3000'], 
+  
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   }
+
 app.use(cors(corsOptions));
 
-// Use the router for routes starting with '/api'
-app.use('/api', router);  
+// Use the router for routes starting with '/auth'
+app.use('/auth', router);  
 
 // Import routes from auth.Routers
 authRoutes(router);
 
 // Define a route for the root path
 router.get('/', (req, res) => {
-    res.send("Hello World");
+    res.send("Hello World:)");
 });
 
 // Use the router for all routes

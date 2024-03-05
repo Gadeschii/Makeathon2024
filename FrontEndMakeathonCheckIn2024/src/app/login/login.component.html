@@ -1,10 +1,10 @@
-
 <div class="main-container">
 
     <div class= "content"> 
         <form #frmLogin="ngForm" class="login-container" (ngSubmit)="onLogin(frmLogin)">
             
             <div class="left-side" >
+                <p class="Login-text">Login</p>
                 <mat-form-field  >
                     <mat-label>User</mat-label>
                     
@@ -18,15 +18,14 @@
                     <input matInput [(ngModel)]="password" name="password" type="password" required>
     
                 </mat-form-field>
-                
                 <div>
                     <button class="button" type = "submit"> Login </button>
-            
                 </div>
             </div> 
             <div class="right-side">
-                <p class="welcome-text">Makeathon 2024</p>
-                <img src="assets/images/SMGI_Logo.jpg" class="img" alt="Company Logo">
+                <p class="welcome-text">Makeathon2024 </p>
+                <!-- <img src="assets/images/SMGI_Logo.jpg" class="img" alt="Company Logo"> -->
+                <img src="assets/images/SMGI_Logo.png" class="img" alt="Company Logo">
             </div>
         </form>
     </div>  
