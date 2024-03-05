@@ -6,7 +6,6 @@ import { RouterModule, Routes } from '@angular/router'; // Angular's RouterModul
 const routes: Routes = [
   { path: '', redirectTo:'auth/login', pathMatch:'full' }, // Default route redirects to 'auth/login'
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) }, // Lazy loading AuthModule when 'auth' path is hit
-  
 ];
 
 // NgModule decorator with its metadata

@@ -28,8 +28,6 @@ export class UserService {
 
   // readonly AUTH_SERVER = `https://${this.ServerIP}:3000`;
   // readonly AUTH_SERVER = `https://${this.ServerIP}:443`;
-  
-
 
   // Create a new BehaviorSubject that will hold a boolean value
   authSubject = new BehaviorSubject(false);

@@ -8,7 +8,6 @@ const SECRET_KEY = 'SECRETKEY123456';
 const mongoose = require('mongoose');
 const app = require('express')();
 
-
 // Function to create a new user
 exports.registerUser = (req, res, next) => {
     // Check if user already exists
@@ -229,7 +228,6 @@ exports.getAllUsers = (req, res, next) => {
 // Function to search users
 exports.searchUsers = (req, res, next) => {
     const searchTerm = req.query.term.toLowerCase();
-
     User.find({
         $or: [
             { 'First Name': new RegExp(searchTerm, 'i') },
